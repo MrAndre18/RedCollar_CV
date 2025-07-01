@@ -1,0 +1,140 @@
+.range {
+  display: flex;
+  gap: rem(60px);
+  align-items: center;
+
+  @media #{media('<',d)} {
+    flex-direction: column;
+    gap: rem(12px);
+    width: rem(295px);
+  }
+
+  &__head {
+    display: flex;
+    justify-content: space-between;
+
+    @media #{media('<',d)} {
+      width: 100%;
+    }
+  }
+
+  &__value {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    // padding: rem(14px) rem(23px);
+
+    @media #{media('<',d)} {
+      width: 100%;
+    }
+  }
+
+  &__border {
+    font-size: rem(17px);
+    font-weight: 300;
+    line-height: '150%';
+    color: #80828b;
+    letter-spacing: '-0.01em';
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: rem(13px);
+
+    max-width: rem(448px);
+
+    @media #{media('<',d)} {
+      width: 100%;
+    }
+  }
+
+  &__block {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  // фон
+
+  &__body {
+    flex-shrink: 0;
+
+    height: rem(6px);
+    margin-block: rem(10px);
+    border: none;
+
+    // @apply bg-gray-light;
+    background-color: #f1f2f4;
+    box-shadow: none;
+
+    :global(.noUi-connects) {
+      border-radius: rem(30px);
+    }
+
+    // заполненная часть
+
+    :global(.noUi-connect) {
+      border-radius: 0;
+
+      // @apply bg-blue;
+      background-color: #3267d3;
+    }
+
+    // перетаскиватель
+
+    :global(.noUi-handle) {
+      cursor: pointer;
+
+      top: 50%;
+      right: rem(-13px);
+      transform: translateY(calc(-50% + rem(3px)));
+
+      width: rem(26px);
+      height: rem(26px);
+      border: rem(3px) solid #ffffff;
+      border-radius: rem(40px);
+
+      // @apply bg-blue border-white;
+      background-color: #3267d3;
+      box-shadow: none;
+      box-shadow: 0px 8px 20px 0px rgba(12, 54, 137, 0.3);
+
+      transition: $transition;
+
+      @media #{media('>',t)} and (hover: hover) and (pointer: fine) {
+        &:hover {
+          // @apply bg-primary;
+          background-color: #1d1a3e;
+        }
+      }
+
+      &::before,
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  &__lower,
+  &__upper {
+    width: auto;
+    min-width: rem(100px);
+    height: rem(60px);
+    padding-inline: rem(14px);
+    border: 1px solid #e9ebf2;
+    border-radius: rem(20px);
+
+    color: #3267d3;
+
+    background: transparent;
+    background-color: #f8f9fa;
+
+    // @apply border-gray-border text-blue bg-gray-extraLight text-[1.25rem];
+
+    @media #{media('<',d)} {
+      width: 100%;
+    }
+  }
+}

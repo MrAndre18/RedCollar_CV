@@ -1,0 +1,45 @@
+.dropdown {
+  position: relative;
+
+  &__trigger {
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    gap: rem(8px);
+    align-items: center;
+    width: fit-content;
+
+    svg {
+      width: rem(16px);
+      height: rem(16px);
+      transition: transform $transition;
+    }
+
+    &[aria-expanded="true"] {
+      svg {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  &__menu {
+    position: absolute;
+    top: calc(100% + rem(8px));
+    left: 0;
+    width: fit-content;
+    min-width: rem(140px);
+    opacity: 0;
+    background: #fff;
+    border-radius: rem(4px);
+    padding: rem(8px);
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: opacity $transition, transform $transition;
+
+    &.is-open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+  }
+}

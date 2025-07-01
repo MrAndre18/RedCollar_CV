@@ -1,0 +1,102 @@
+.toastify {
+  cursor: auto !important;
+
+  transform: translate(0, rem(89px)) !important;
+
+  display: unset !important;
+
+  width: 100%;
+  max-width: rem(350px) !important;
+  padding: 0 !important;
+  border-radius: unset !important;
+
+  color: inherit !important;
+  text-decoration: unset !important;
+
+  background: none !important;
+  box-shadow: unset !important;
+
+  transition: $transition !important;
+
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+
+  @media #{media('<',d)} {
+    transform: translate(0, rem(61px)) !important;
+  }
+
+  @media #{media('<',m)} {
+    max-width: calc(100% - rem(32px)) !important;
+  }
+
+  @media #{media('<',xs)} {
+    transform: translate(0, rem(50px)) !important;
+    max-width: calc(100% - rem(16px)) !important;
+  }
+
+  &-right {
+    right: rem(24px) !important;
+
+    @media #{media('<',d)} {
+      right: rem(16px) !important;
+    }
+
+    @media #{media('<',xs)} {
+      right: 0 !important;
+    }
+  }
+}
+
+.toast-text {
+  position: relative;
+  padding: rem(18px);
+
+  @media #{media('<',m)} {
+    padding: rem(16px);
+  }
+
+  &.default {
+    background-color: #000000;
+    color: #fff;
+  }
+
+  &.success {
+    background-color: #1EBD75;
+    color: #000000;
+  }
+
+  &.error {
+    background-color: #EB5757;
+    color: #fff;
+  }
+
+  &.info {
+    background-color: #3267D3;
+    color: #fff;
+  }
+
+  &.warning {
+    background-color: #FFC107;
+    color: #000000;
+  }
+
+  .toast-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    cursor: pointer;
+    width: rem(24px);
+    height: rem(24px);
+    font-size: rem(20px);
+    transition: opacity $transition;
+
+    @media #{media('>',t)} and (hover: hover) and (pointer: fine) {
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+}

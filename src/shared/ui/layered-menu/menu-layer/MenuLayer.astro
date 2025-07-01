@@ -1,0 +1,31 @@
+---
+interface Props {
+  class?: string
+}
+
+const { class: className, ...props } = Astro.props as Props
+
+export { MenuLayer }
+---
+
+<div
+  class:list={['menu-layer', className]}
+  {...props}
+  data-menu-layer
+  data-scrollbar
+  data-lenis-prevent
+>
+  <slot />
+</div>
+
+<style lang="scss">
+  .menu-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+</style>

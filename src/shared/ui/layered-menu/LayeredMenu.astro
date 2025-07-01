@@ -1,0 +1,17 @@
+---
+interface Props {
+  class?: string
+}
+
+const { class: className, ...props } = Astro.props as Props
+
+export { LayeredMenu }
+---
+
+<div
+  class:list={['layered-menu', className]}
+  {...props}
+  data-layered-menu
+>
+  <slot />
+</div>

@@ -1,0 +1,25 @@
+---
+interface Props {
+  id?: string
+  class?: string
+  multiple?: boolean
+  titleSize?: 'small' | 'large'
+}
+
+const { class: className, multiple = false, titleSize = 'large', ...props } = Astro.props as Props
+
+export { AccordionContainer }
+---
+
+<div
+  class:list={['accordion-container', `accordion-container_title-${titleSize}`, className]}
+  data-accordion-container
+  data-multiple={multiple}
+  {...props}
+>
+  <slot />
+</div>
+
+<style>
+  @import './accordion-container.scss';
+</style>

@@ -1,0 +1,46 @@
+---
+import ArrowDown from '@shared/assets/icons/arrow-down.svg'
+import ArrowSmallLeft from '@shared/assets/icons/arrow-small-left.svg'
+import ArrowSmallRight from '@shared/assets/icons/arrow-small-right.svg'
+import ArrowWhite from '@shared/assets/icons/arrow-white.svg'
+import Chart from '@shared/assets/icons/chart.svg'
+import Like from '@shared/assets/icons/like.svg'
+import Close from '@shared/assets/icons/close.svg'
+
+export const icons = {
+  'arrow-down': ArrowDown,
+  'arrow-small-left': ArrowSmallLeft,
+  'arrow-small-right': ArrowSmallRight,
+  'arrow-white': ArrowWhite,
+  chart: Chart,
+  like: Like,
+  close: Close
+}
+
+export type IconKey = keyof typeof icons
+
+interface Props {
+  name: IconKey
+  class?: string
+  ariaLabel?: string
+  initial?: boolean
+}
+
+const { class: className, name, ariaLabel, initial = false, ...props } = Astro.props as Props
+
+const SelectedIcon = icons[name]
+
+export { Icon }
+---
+
+<SelectedIcon
+  class:list={['icon', { icon_initial: initial }, className]}
+  role={ariaLabel ? 'img' : 'presentation'}
+  aria-hidden={ariaLabel ? undefined : 'true'}
+  aria-label={ariaLabel}
+  {...props}
+/>
+
+<style>
+  @import './icon.scss';
+</style>

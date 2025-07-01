@@ -1,0 +1,23 @@
+---
+interface Props extends astroHTML.JSX.FormHTMLAttributes {
+  class?: string
+}
+
+const { class: className, ...props } = Astro.props as Props
+---
+
+<form
+  {...props}
+  class:list={['form', className]}
+>
+  <slot />
+  <div
+    class="form__error"
+    data-form-error=""
+  >
+  </div>
+</form>
+
+<style>
+  @import './form.scss';
+</style>

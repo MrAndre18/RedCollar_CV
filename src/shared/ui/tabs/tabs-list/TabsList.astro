@@ -1,0 +1,19 @@
+---
+interface Props {
+  class?: string
+}
+
+const { class: className, ...props } = Astro.props as Props
+---
+
+<ul
+  role="tablist"
+  class:list={['tabs-list', className]}
+  {...props}
+>
+  <slot />
+</ul>
+
+<style>
+  @import './tabs-list.scss';
+</style>

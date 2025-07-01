@@ -1,0 +1,31 @@
+---
+interface Props {
+  class?: string
+  list: {
+    title: string
+    value: string
+  }[]
+}
+
+const { class: className, list = [], ...props } = Astro.props as Props
+
+export { Specifications }
+---
+
+<dl
+  class:list={['specifications', className]}
+  {...props}
+>
+  {
+    list.map(({ title, value }) => (
+      <div class="specifications__item">
+        <dt class="specifications__title">{title}</dt>
+        <dd class="specifications__value">{value}</dd>
+      </div>
+    ))
+  }
+</dl>
+
+<style>
+  @import './specifications.scss';
+</style>

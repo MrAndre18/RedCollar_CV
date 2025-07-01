@@ -1,0 +1,39 @@
+---
+type LabelProps = {
+  label: string
+  children?: never // явно запрещаем children при наличии label
+}
+
+type SlotProps = {
+  label?: never // явно запрещаем label при наличии слота
+  children: any
+}
+
+type BaseProps = Pick<
+  astroHTML.JSX.InputHTMLAttributes,
+  'checked' | 'disabled' | 'name' | 'readonly' | 'required' | 'value'
+> & {
+  class?: string
+}
+
+type Props = BaseProps & (LabelProps | SlotProps)
+
+const { class: className, label, ...props } = Astro.props as Props
+
+export { Switch }
+---
+
+<label class:list={['switch', className]}>
+  <input
+    type="checkbox"
+    {...props}
+  />
+  <span class="switch__text text-title-20 devices:text-title-16"><slot>{label}</slot></span>
+  <span class="switch__toggler">
+    <span class="switch__slider"></span>
+  </span>
+</label>
+
+<style>
+  @import './switch.scss';
+</style>

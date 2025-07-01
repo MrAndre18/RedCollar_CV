@@ -1,0 +1,110 @@
+---
+interface Props {
+  class?: string
+  id: string
+  side?: 'left' | 'right'
+  title?: string
+  containerProps?: Record<string, any>
+  headerProps?: Record<string, any>
+  contentProps?: Record<string, any>
+  footerProps?: Record<string, any>
+}
+
+const {
+  class: className,
+  id,
+  side = 'left',
+  title,
+  containerProps = {},
+  headerProps = {},
+  contentProps = {},
+  footerProps = {},
+  ...props
+} = Astro.props as Props
+
+export { Drawer }
+---
+
+<div
+  class:list={['drawer', side && `drawer_side_${side}`, className]}
+  data-modal={id}
+  aria-hidden="true"
+  role="dialog"
+  aria-modal="true"
+  {...props}
+>
+  <div
+    class="drawer__backdrop"
+    data-modal-backdrop
+  >
+  </div>
+
+  <div
+    class:list={['drawer__container', containerProps.class]}
+    role="document"
+    {...containerProps}
+  >
+    <button
+      type="button"
+      class="drawer__close"
+      data-modal-close
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="32"
+        height="32"
+        viewBox="0 0 32 32"
+        fill="none"
+      >
+        <path
+          d="M8.75 8.75012L23.25 23.2501"
+          stroke="black"
+          stroke-width="3"
+          stroke-linecap="square"
+          stroke-linejoin="round"
+        ></path>
+        <path
+          d="M8.75 23.2501L23.25 8.75012"
+          stroke="black"
+          stroke-width="3"
+          stroke-linecap="square"
+          stroke-linejoin="round"
+        ></path>
+      </svg>
+    </button>
+
+    {
+      (title || Astro.slots.has('header')) && (
+        <div
+          class:list={['drawer__header', headerProps.class]}
+          {...headerProps}
+        >
+          <slot name="header">
+            {title && (
+              <h2
+                class="drawer__title"
+                set:html={title}
+              />
+            )}
+          </slot>
+        </div>
+      )
+    }
+    <div
+      class:list={['drawer__content', contentProps.class]}
+      {...contentProps}
+    >
+      <slot />
+    </div>
+    <div
+      class:list={['drawer__footer', footerProps.class]}
+      {...footerProps}
+    >
+      <slot name="footer" />
+    </div>
+  </div>
+</div>
+
+<style>
+  @import './drawer.scss';
+</style>

@@ -1,0 +1,119 @@
+.os-theme-default {
+  /* Размер полосы прокрутки (толщина) */
+  --os-size: 12px;
+
+  /* Отступы между ползунком и границами контейнера по перпендикулярной оси */
+  --os-padding-perpendicular: 2px;
+  /* Отступы по оси движения полосы */
+  --os-padding-axis: 2px;
+
+  /* Скругление углов дорожки (track) */
+  --os-track-border-radius: 0px;
+  /* Фон дорожки в обычном состоянии */
+  --os-track-bg: rgba(0, 0, 0, 0);
+  /* Фон дорожки при наведении курсора */
+  --os-track-bg-hover: rgba(0, 0, 0, 0);
+  /* Фон дорожки при активном нажатии */
+  --os-track-bg-active: rgba(0, 0, 0, 0);
+
+  /* Граница дорожки в обычном состоянии */
+  --os-track-border: 1px solid rgba(0, 0, 0, 0);
+  /* Граница дорожки при наведении */
+  --os-track-border-hover: 1px solid rgba(0, 0, 0, 0);
+  /* Граница дорожки при активном нажатии */
+  --os-track-border-active: 1px solid rgba(0, 0, 0, 0);
+
+  /* Скругление углов ползунка (handle) */
+  --os-handle-border-radius: 6px;
+  /* Цвет ползунка в обычном состоянии */
+  --os-handle-bg: rgba(0, 0, 0, 0.4);
+  /* Цвет ползунка при наведении */
+  --os-handle-bg-hover: rgba(0, 0, 0, 0.6);
+  /* Цвет ползунка при нажатии */
+  --os-handle-bg-active: rgba(0, 0, 0, 0.8);
+
+  /* Граница ползунка в обычном состоянии */
+  --os-handle-border: none;
+  /* Граница ползунка при наведении */
+  --os-handle-border-hover: none;
+  /* Граница ползунка при нажатии */
+  --os-handle-border-active: none;
+
+  /* Минимальная длина (высота) ползунка */
+  --os-handle-min-size: 30px;
+  /* Максимальная длина ползунка (none — без ограничений) */
+  --os-handle-max-size: none;
+
+  /* Ширина зоны интерактивного хендла по перпендикулярной оси */
+  --os-handle-perpendicular-size: 100%;
+  /* Зона при наведении */
+  --os-handle-perpendicular-size-hover: 100%;
+  /* Зона при активном нажатии */
+  --os-handle-perpendicular-size-active: 100%;
+
+  /* Отступ для расширенной зоны клика вокруг ползунка */
+  --os-handle-interactive-area-offset: 2px;
+
+  @media #{media('<',d)} {
+    --os-size: 6px;
+    --os-padding-perpendicular: 1px;
+    --os-padding-axis: 1px;
+  }
+}
+
+.os-theme-dark {
+  /* Размер полосы прокрутки (толщина) */
+  --os-size: 8px;
+
+  /* Отступы между ползунком и границами контейнера по перпендикулярной оси */
+  --os-padding-perpendicular: 0;
+  /* Отступы по оси движения полосы */
+  --os-padding-axis: 0;
+
+  /* Скругление углов дорожки (track) */
+  --os-track-border-radius: 0px;
+  /* Фон дорожки в обычном состоянии */
+  --os-track-bg: #E4E4E4;
+  /* Фон дорожки при наведении курсора */
+  --os-track-bg-hover: #E4E4E4;
+  /* Фон дорожки при активном нажатии */
+  --os-track-bg-active: #E4E4E4;
+
+  /* Граница дорожки в обычном состоянии */
+  --os-track-border: none;
+  /* Граница дорожки при наведении */
+  --os-track-border-hover: none;
+  /* Граница дорожки при активном нажатии */
+  --os-track-border-active: none;
+
+  /* Скругление углов ползунка (handle) */
+  --os-handle-border-radius: 0px;
+  /* Цвет ползунка в обычном состоянии */
+  --os-handle-bg: #000000;
+  /* Цвет ползунка при наведении */
+  --os-handle-bg-hover: #262626;
+  /* Цвет ползунка при нажатии */
+  --os-handle-bg-active: #262626;
+
+  /* Граница ползунка в обычном состоянии */
+  --os-handle-border: none;
+  /* Граница ползунка при наведении */
+  --os-handle-border-hover: none;
+  /* Граница ползунка при нажатии */
+  --os-handle-border-active: none;
+
+  /* Минимальная длина (высота) ползунка */
+  --os-handle-min-size: 30px;
+  /* Максимальная длина ползунка (none — без ограничений) */
+  --os-handle-max-size: none;
+
+  /* Ширина зоны интерактивного хендла по перпендикулярной оси */
+  --os-handle-perpendicular-size: 100%;
+  /* Зона при наведении */
+  --os-handle-perpendicular-size-hover: 100%;
+  /* Зона при активном нажатии */
+  --os-handle-perpendicular-size-active: 100%;
+
+  /* Отступ для расширенной зоны клика вокруг ползунка */
+  --os-handle-interactive-area-offset: 2px;
+}

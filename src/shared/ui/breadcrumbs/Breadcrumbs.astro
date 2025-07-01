@@ -1,0 +1,55 @@
+---
+interface Props {
+  class?: string
+  root?: { text: string; href: string }
+  list?: Array<{ text: string; href?: string }>
+}
+
+const {
+  class: className,
+  root = { text: 'Главная', href: import.meta.env.BASE_URL },
+  list = [],
+  ...props
+} = Astro.props as Props
+
+export { Breadcrumbs }
+---
+
+<nav
+  class:list={['breadcrumbs', className]}
+  {...props}
+>
+  <ul
+    class="breadcrumbs__list text-title-20 devices:text-title-16"
+    data-horizontal-scroll
+  >
+    <li class="breadcrumbs__item">
+      <a
+        href={root.href}
+        class="breadcrumbs__item-text"
+        >{root.text}</a
+      >
+    </li>
+
+    {
+      list.map(item => (
+        <li class="breadcrumbs__item">
+          {list.indexOf(item) === list.length - 1 ? (
+            <span class="breadcrumbs__item-text active">{item.text}</span>
+          ) : (
+            <a
+              href={item.href ?? '#'}
+              class="breadcrumbs__item-text"
+            >
+              {item.text}
+            </a>
+          )}
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<style>
+  @import './index.scss';
+</style>

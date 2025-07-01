@@ -1,0 +1,97 @@
+.button-favorite {
+  user-select: none;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: rem(12px);
+  flex-shrink: 0;
+
+  @media #{media('<',d)} {
+    gap: rem(8px);
+  }
+
+  @media #{media('>',t)} and (hover: hover) and (pointer: fine) {
+    &:hover .button-favorite__square {
+      background-color: #9CC6F1;
+
+      .button-favorite__icon :global(path) {
+        fill: #fff;
+        stroke: #fff;
+      }
+    }
+  }
+
+  &.active {
+    .button-favorite__icon :global(path) {
+      fill: #9CC6F1;
+      stroke: #9CC6F1;
+    }
+
+    @media #{media('>',t)} and (hover: hover) and (pointer: fine) {
+      &:hover .button-favorite__square {
+        background-color: #9CC6F1;
+
+        .button-favorite__icon :global(path) {
+          fill: #fff;
+          stroke: #fff;
+        }
+      }
+    }
+  }
+
+  &[disabled] {
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.5;
+  }
+
+  &__square {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: rem(48px);
+    height: rem(48px);
+    border-radius: rem(4px);
+    flex-shrink: 0;
+
+    background-color: #F5F6F7;
+
+    transition: background-color $transition;
+
+    @media #{media('<',d)} {
+      width: rem(32px);
+      height: rem(32px);
+    }
+  }
+
+  &__icon {
+    width: rem(28px);
+    height: rem(28px);
+
+    @media #{media('<',d)} {
+      width: rem(20px);
+      height: rem(20px);
+    }
+
+    :global(path) {
+      stroke: #161C2A;
+      fill: transparent;
+
+      transition: fill $transition, stroke $transition;
+    }
+  }
+
+  &__text {
+    text-wrap: nowrap;
+    font-size: rem(20px);
+    font-weight: 700;
+    line-height: 140%;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+
+    @media #{media('<',d)} {
+      font-size: rem(12px);
+    }
+  }
+}

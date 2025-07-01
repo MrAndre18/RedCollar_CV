@@ -1,0 +1,76 @@
+---
+interface Props {
+  maxLength?: number
+  oneSided?: boolean
+  min?: number
+  max?: number
+  step?: number
+  // start ожидается в виде строки "2500,7500" или "2500"
+  class?: string
+  startMin: number
+  startMax?: number
+  [key: string]: any
+}
+
+const {
+  maxLength = 3,
+  oneSided = false,
+  min = 0,
+  max = 100,
+  step = 1,
+  startMin = min,
+  startMax = max,
+  // Если start не передан, формируется из p1 и p2
+  start = oneSided ? `${startMin}` : `${startMin},${startMax ?? startMin}`,
+  class: className = '',
+  ...props
+} = Astro.props as Props
+
+// Преобразуем start в массив значений и формируем строку нужного формата
+const dataStart = oneSided ? `['${startMin}']` : `['${startMin}', '${startMax || startMin}']`
+---
+
+<div
+  {...props}
+  class:list={['range', className]}
+  data-min={min}
+  data-max={max}
+  data-step={step}
+  data-start={dataStart}
+>
+  <div class="range__value">
+    <input
+      class="range__lower"
+      type="text"
+      maxlength={maxLength}
+      value={startMin}
+      style={`width: ${String(startMin).length * 5}px;`}
+    />
+  </div>
+  <div class="range__wrapper">
+    <div class="range__body"></div>
+    <div class="range__block">
+      <div class="range__border range__border--min">{min}</div>
+      <div class="range__border range__border--max">{max}</div>
+    </div>
+  </div>
+  <div class="range__head">
+    {
+      !oneSided && (
+        <div class="range__value">
+          <input
+            class="range__upper"
+            type="text"
+            maxlength={maxLength}
+            value={startMin}
+          />
+        </div>
+      )
+    }
+  </div>
+  <slot />
+</div>
+
+<style lang="scss">
+  @import './range.scss';
+</style>

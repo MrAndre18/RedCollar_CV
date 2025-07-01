@@ -1,0 +1,24 @@
+---
+interface Props {
+  id: string
+  isActive?: boolean
+  class?: string
+}
+
+const { class: className, id, isActive = false, ...props } = Astro.props as Props
+const tabId = id.replace(/-panel$/, '')
+---
+
+<div
+  class:list={['tab-panel', className, { active: isActive }]}
+  {...props}
+  id={id}
+  role="tabpanel"
+  aria-labelledby={tabId}
+>
+  <slot />
+</div>
+
+<style>
+  @import './tab-panel.scss';
+</style>

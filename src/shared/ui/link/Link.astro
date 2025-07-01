@@ -1,0 +1,41 @@
+---
+interface LinkProps {
+  text: string
+  href: string
+  variant?: 'contained'
+  color?: 'light' | 'primary'
+  class?: string
+  startIcon?: any
+  endIcon?: any
+}
+
+const {
+  text,
+  href = '#',
+  variant = 'contained',
+  color = 'primary',
+  class: className,
+  startIcon: StartIcon,
+  endIcon: EndIcon,
+  ...props
+} = Astro.props as LinkProps
+
+export { Link }
+---
+
+<a
+  href='={href}'
+  {...props}
+  class:list={[
+    'link',
+    { [`link_variant_${variant}`]: !!variant },
+    { [`link_color_${color}`]: !!color },
+    className
+  ]}
+>
+  {text}
+</a>
+
+<style>
+  @import './link.scss';
+</style>

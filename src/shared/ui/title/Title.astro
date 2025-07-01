@@ -1,0 +1,39 @@
+---
+interface Props {
+  tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+  variant?: '240' | '140' | '120' | '80' | '48' | '32' | '24' | '20'
+  color?: 'white' | 'primary' | 'mixed' | 'blue' | 'gray'
+  weight?: '300' | '400' | '500' | '700' | '800'
+  class?: string
+}
+
+const {
+  tag = 'h2',
+  variant = '120',
+  color = 'primary',
+  weight = '400',
+  class: className,
+  ...props
+} = Astro.props as Props
+
+const Tag: string = tag
+
+export { Title }
+---
+
+<Tag
+  {...props}
+  class:list={[
+    'title',
+    { [`title_variant_${variant}`]: !!variant },
+    { [`title_color_${color}`]: !!color },
+    { [`title_weight_${weight}`]: !!weight },
+    className
+  ]}
+>
+  <slot />
+</Tag>
+
+<style>
+  @import './Title.scss';
+</style>

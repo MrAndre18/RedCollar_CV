@@ -1,0 +1,125 @@
+.button-square {
+  border-radius: rem(4px);
+  border: 1px solid transparent;
+  user-select: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition:
+    color $transition,
+    background-color $transition;
+
+  &[disabled] {
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.5;
+  }
+
+  &_size {
+    &_48 {
+      width: rem(48px);
+      height: rem(48px);
+
+      @media #{media('<',d)} {
+        width: rem(40px);
+        height: rem(40px);
+      }
+
+      .button-square__icon {
+        width: rem(28px);
+        height: rem(28px);
+
+        @media #{media('<',d)} {
+          width: rem(20px);
+          height: rem(20px);
+        }
+      }
+    }
+
+    &_60 {
+      width: rem(60px);
+      height: rem(60px);
+
+      @media #{media('<',d)} {
+        width: rem(56px);
+        height: rem(56px);
+      }
+
+      .button-square__icon {
+        width: rem(28px);
+        height: rem(28px);
+
+        @media #{media('<',d)} {
+          width: rem(20px);
+          height: rem(20px);
+        }
+      }
+    }
+
+    &_64 {
+      width: rem(64px);
+      height: rem(64px);
+
+      @media #{media('<',d)} {
+        width: rem(56px);
+        height: rem(56px);
+      }
+
+      .button-square__icon {
+        width: rem(40px);
+        height: rem(40px);
+
+        @media #{media('<',d)} {
+          width: rem(28px);
+          height: rem(28px);
+        }
+      }
+    }
+
+    &_124 {
+      width: rem(124px);
+      height: rem(124px);
+
+      @media #{media('<',d)} {
+        width: rem(56px);
+        height: rem(56px);
+      }
+
+      .button-square__icon {
+        width: rem(48px);
+        height: rem(48px);
+
+        @media #{media('<',d)} {
+          width: rem(28px);
+          height: rem(28px);
+        }
+      }
+    }
+  }
+
+  &_color {
+    &_default {
+      background-color: #fff;
+      color: #262d3b;
+
+      @media #{media('>',t)} and (hover: hover) and (pointer: fine) {
+        &:hover {
+          background-color: #ececec;
+        }
+      }
+    }
+
+    &_accent {
+      background-color: #9cc6f1;
+      color: #fff;
+
+      @media #{media('>',d)} and (hover: hover) and (pointer: fine) {
+        &:hover {
+          background-color: #262d3b;
+        }
+      }
+    }
+  }
+}

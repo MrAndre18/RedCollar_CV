@@ -1,0 +1,35 @@
+.tab-panel {
+  pointer-events: none;
+
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+
+  opacity: 0;
+
+  @media #{media('<',d)} {
+    padding-block: rem(16px);
+  }
+
+  &.active {
+    pointer-events: auto;
+    position: relative;
+    z-index: 1;
+    opacity: 1;
+  }
+
+  &.fade {
+    transition: opacity $transition;
+  }
+
+  &.slide {
+    transform: translateX(rem(-20px));
+    transition:
+      transform $transition,
+      opacity $transition;
+
+    &.active {
+      transform: translateX(0);
+    }
+  }
+}

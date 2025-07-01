@@ -1,0 +1,110 @@
+@use 'sass:map';
+
+@function breakpoint($variant: d) {
+  @return map.get($breakpoints, $variant);
+}
+
+@function media($direction: '>', $variant: d) {
+  @if $direction =='>' {
+    @return '(min-width: #{breakpoint($variant)})';
+  }
+
+  @else if $direction =='<' {
+    @return '(max-width: #{breakpoint($variant) - 1px})';
+  }
+
+  @else if $direction =='<=' {
+    @return '(max-width: #{breakpoint($variant)})';
+  }
+
+  @else if $direction =='mt' {
+    @return '(min-width: #{breakpoint(m)}) and (max-width: #{breakpoint(t) - 1px})';
+  }
+
+  @else if $direction =='td' {
+    @return '(min-width: #{breakpoint(t)}) and (max-width: #{breakpoint(d) - 1px})';
+  }
+
+  @else if $direction =='md' {
+    @return '(min-width: #{breakpoint(m)}) and (max-width: #{breakpoint(d) - 1px})';
+  }
+}
+
+@mixin border() {
+  position: relative;
+
+  &::after {
+    pointer-events: none;
+    content: '';
+
+    position: absolute;
+    z-index: 2;
+    top: -1px;
+    left: -1px;
+
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
+    border: 1px solid;
+
+    background: transparent;
+
+    @apply border-primary;
+  }
+}
+
+@mixin cropText($lineCount) {
+  overflow: hidden;
+  display: -moz-box;
+  display: -webkit-box;
+  -moz-box-orient: vertical;
+  -webkit-box-orient: vertical;
+  box-orient: vertical;
+  -webkit-line-clamp: $lineCount;
+  line-clamp: $lineCount;
+
+  text-overflow: ellipsis;
+}
+
+@mixin scrollbar-hidden() {
+  scrollbar-width: none;
+
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@mixin styled-scrollbar($scrollbar-bg: $background-light, $size: 6px) {
+  scrollbar-color: color(brand-light) $scrollbar-bg;
+
+  // firefox
+
+  scrollbar-width: thin;
+
+  scrollbar-3dlight-color: $scrollbar-bg;
+
+  scrollbar-arrow-color: color(brand-light);
+  scrollbar-darkshadow-color: $scrollbar-bg;
+  scrollbar-face-color: color(brand-light);
+
+  scrollbar-highlight-color: color(brand-light);
+  scrollbar-shadow-color: color(brand-light);
+  scrollbar-track-color: $scrollbar-bg;
+
+  // chrome, edge, opera, safari
+
+  &::-webkit-scrollbar {
+    width: $size;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: $scrollbar-bg;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    // margin: 4px 0;
+
+    background-color: color(brand-light);
+  }
+}

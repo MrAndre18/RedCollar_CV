@@ -1,0 +1,27 @@
+---
+interface Props extends astroHTML.JSX.TextareaHTMLAttributes {
+  class?: string
+  'data-validate'?: string
+}
+
+const { class: className, ...props } = Astro.props as Props
+---
+
+<div
+  data-input-parent
+  class="textarea"
+>
+  <textarea
+    class:list={['textarea__field', className]}
+    data-input
+    {...props}
+  ></textarea>
+  <span
+    class="textarea__error text-red"
+    data-error-container
+  ></span>
+</div>
+
+<style>
+  @import './textarea.scss';
+</style>

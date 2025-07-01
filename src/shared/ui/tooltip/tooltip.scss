@@ -1,0 +1,29 @@
+.tooltip {
+  display: inline-block;
+
+  &__content {
+    display: none;
+  }
+}
+
+:global(.tippy-box[data-theme~='custom']) {
+  width: fit-content;
+  padding: rem(8px) rem(16px);
+  border-radius: rem(0px);
+
+  text-wrap: nowrap;
+
+  background-color: #000000;
+}
+
+:global(.tippy-content) {
+  width: unset !important;
+  padding: 0;
+  color: #ffffff;
+  text-align: center;
+
+  font-size: 14px;
+  line-height: 150%;
+  letter-spacing: -0.01em;
+  font-weight: 300;
+}

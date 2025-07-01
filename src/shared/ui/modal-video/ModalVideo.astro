@@ -1,0 +1,29 @@
+---
+interface Props {
+  src?: string
+  class?: string
+}
+
+const {
+  class: className,
+  src = 'https://rutube.ru/play/embed/b94641748c2a4ab5ee5b399d9556ab85',
+  ...props
+} = Astro.props as Props
+
+export { ModalVideo }
+---
+
+<a
+  class:list={['modal-video', className]}
+  {...props}
+  href="javascript:;"
+  data-fancybox=""
+  data-src={src}
+  data-type="iframe"
+>
+  <slot />
+</a>
+
+<style>
+  @import './modal-video.scss';
+</style>

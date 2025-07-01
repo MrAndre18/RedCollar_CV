@@ -1,0 +1,44 @@
+---
+import Icon from '@shared/ui/icon/Icon.astro'
+
+interface Props {
+  class?: string
+  isActive?: boolean
+  type?: 'button' | 'submit'
+  text?: string
+}
+
+const { class: className, isActive = false, type = 'button', text, ...props } = Astro.props as Props
+
+const hasSlot = !!Astro.slots.default
+
+export { ButtonFavorite }
+---
+
+<button
+  class:list={['button-favorite', { active: isActive }, className]}
+  type={type}
+  {...props}
+>
+  <span class="button-favorite__square">
+    <Icon
+      class="button-favorite__icon"
+      name="like"
+      initial
+    />
+  </span>
+
+  {
+    hasSlot ? (
+      <span class="button-favorite__text">
+        <slot />
+      </span>
+    ) : (
+      text && <span class="button-favorite__text">{text}</span>
+    )
+  }
+</button>
+
+<style>
+  @import './button-favorite.scss';
+</style>

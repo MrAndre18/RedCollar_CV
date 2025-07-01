@@ -1,0 +1,117 @@
+@mixin color-light-link {
+  background-color: #123123 !important;
+  color: var(--color-primary) !important;
+
+  @media #{media('>', d)} and (hover: hover) and (pointer: fine) {
+    &:hover {
+      background-color: var(--color-primary) !important;
+      color: gray !important;
+    }
+  }
+
+  &[disabled] {
+    opacity: 0.3 !important;
+  }
+}
+
+.link {
+  user-select: none;
+
+  display: flex;
+  gap: rem(12px);
+
+  transition:
+    color $transition,
+    background-color $transition;
+
+  font-size: rem(40px);
+  line-height: 1.2;
+  font-weight: 500;
+
+  @media #{media('>',t)} and (hover: hover) and (pointer: fine) {
+    &:hover {
+      color: blue;
+    }
+  }
+
+  @media #{media('<', d)} {
+    font-size: rem(24px);
+  }
+
+  &[disabled] {
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.1;
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    width: rem(32px);
+    height: rem(32px);
+
+    @media #{media('<', d)} {
+      width: rem(24px);
+      height: rem(24px);
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &_variant {
+    &_contained {
+      width: 100%;
+      height: rem(100px);
+      padding-inline: rem(24px);
+      transition: $transition;
+
+      @media #{media('<', d)} {
+        gap: rem(24px) !important;
+        justify-content: space-between;
+        height: rem(60px);
+        padding-inline: rem(16px);
+      }
+    }
+  }
+
+  &_color {
+    &_primary {
+      color: red;
+
+      @media #{media('>', d)} and (hover: hover) and (pointer: fine) {
+        &:hover {
+          background-color: gray;
+        }
+      }
+
+      &.link_variant_text {
+        background-color: transparent;
+        color: black;
+
+        @media #{media('>', d)} and (hover: hover) and (pointer: fine) {
+          &:hover {
+            background-color: transparent;
+            color: gray;
+          }
+        }
+
+        &[disabled] {
+          pointer-events: none;
+          cursor: not-allowed;
+          opacity: 0.3;
+        }
+      }
+    }
+
+    &_light {
+      @include color-light-link;
+
+      @media #{media('<', d)} {
+        gap: rem(4px) !important;
+        justify-content: center !important;
+      }
+    }
+  }
+}

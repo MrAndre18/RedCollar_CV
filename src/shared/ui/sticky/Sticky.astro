@@ -1,0 +1,24 @@
+---
+interface Props {
+  as?: string
+  class?: string
+  isFullscreen?: boolean
+}
+
+const { class: className, isFullscreen, as: Tag = 'div', ...props } = Astro.props as Props
+
+export { Sticky }
+---
+
+<Tag
+  class:list={['sticky', className]}
+  data-sticky
+  data-sticky-auto-height={isFullscreen}
+  {...props}
+>
+  <slot />
+</Tag>
+
+<style>
+  @import './sticky.scss';
+</style>

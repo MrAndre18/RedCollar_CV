@@ -1,0 +1,17 @@
+.logo {
+  display: block;
+  width: rem(246px);
+  height: rem(64px);
+
+  @media #{media('<',d)} {
+    width: rem(151px);
+    height: rem(40px);
+  }
+
+  &_small {
+    @media #{media('<',d)} {
+      width: rem(115px);
+      height: rem(30px);
+    }
+  }
+}

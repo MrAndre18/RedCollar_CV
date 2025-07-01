@@ -1,0 +1,51 @@
+---
+import CloseIcon from '@shared/assets/images/svg/close.svg'
+
+interface Props {
+  id?: string
+  class?: string
+  expanded?: boolean
+  title: string
+  contentProps?: Record<string, any>
+}
+
+const { class: className, expanded = false, title, contentProps, ...props } = Astro.props as Props
+
+export { Accordion }
+---
+
+<div
+  class:list={['accordion', className]}
+  data-accordion
+  data-expanded={expanded}
+  {...props}
+>
+  <h3 class="accordion__header">
+    <button
+      data-accordion-button
+      type="button"
+      class="accordion__trigger"
+    >
+      <span class="accordion__icon">
+        <CloseIcon />
+      </span>
+      <span
+        class="accordion__title"
+        set:html={title}
+      />
+    </button>
+  </h3>
+
+  <div class="accordion__content">
+    <div
+      class:list={['accordion__content-inner', contentProps?.class]}
+      {...contentProps}
+    >
+      <slot />
+    </div>
+  </div>
+</div>
+
+<style>
+  @import './index.scss';
+</style>

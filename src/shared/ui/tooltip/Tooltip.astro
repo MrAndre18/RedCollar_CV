@@ -1,0 +1,40 @@
+---
+import type { Props as TippyCoreProps } from 'tippy.js'
+
+interface TooltipAstroProps {
+  content: string
+  placement?: TippyCoreProps['placement']
+  class?: string
+  id?: string
+  tippyOptions?: Partial<TippyCoreProps>
+}
+
+const {
+  content,
+  placement = 'top',
+  class: className = '',
+  id = `tooltip-${Math.random().toString(36).slice(2)}`,
+  tippyOptions = {}
+} = Astro.props as TooltipAstroProps
+
+const tippyConfig = {
+  content,
+  placement,
+  ...tippyOptions
+}
+
+export { Tooltip }
+---
+
+<span
+  class:list={['tooltip', className].filter(Boolean)}
+  id={id}
+  data-tooltip
+  data-tooltip-config={JSON.stringify(tippyConfig)}
+>
+  <slot />
+</span>
+
+<style>
+  @import './tooltip.scss';
+</style>

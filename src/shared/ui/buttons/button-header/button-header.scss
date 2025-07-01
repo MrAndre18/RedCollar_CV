@@ -1,0 +1,113 @@
+.button-header {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  height: 100%;
+  padding: rem(24px);
+
+  transition:
+    background-color $transition,
+    color $transition,
+    height $transition;
+
+  @apply bg-white text-primary;
+
+  @media #{media('<',d)} {
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1 / 1;
+    padding: 0;
+  }
+
+  @media #{media('>',d)} and (hover: hover) and (pointer: fine) {
+    &:hover {
+      @apply bg-primary text-white;
+    }
+  }
+
+  &.active {
+    @apply bg-primary text-white;
+
+    .button-header__icon-inner:has(.button-header__close) {
+      transform: translateY(-50%);
+    }
+  }
+
+  &_compare,
+  &_favorite,
+  &_tel {
+    @media #{media('>',d)} {
+      &.active {
+        .button-header__icon-inner:has(.button-header__close) {
+          transform: translateY(0);
+        }
+      }
+    }
+
+    &.compressed {
+      .button-header__icon {
+        @media #{media('>',d)} {
+          transform: translateY(100%);
+          opacity: 0;
+        }
+      }
+    }
+  }
+
+  &__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+
+    font-size: rem(20px);
+    font-weight: 600;
+    font-style: normal;
+    line-height: 150%;
+    letter-spacing: -0.01em;
+  }
+
+  &__title {
+    flex-shrink: 0;
+  }
+
+  &__icon {
+    position: absolute;
+    top: calc(100% - rem(24px) - rem(32px));
+    right: rem(24px);
+
+    overflow: hidden;
+    flex-shrink: 0;
+
+    width: rem(32px);
+    height: rem(32px);
+
+    transition:
+      transform $transition-timing-function 0.4s,
+      opacity $transition-timing-function 0.4s;
+
+    @media #{media('<',d)} {
+      position: static;
+      width: rem(24px);
+      height: rem(24px);
+    }
+
+    &-inner {
+      display: flex;
+      flex-direction: column;
+
+      width: 100%;
+      height: 100%;
+
+      transition: transform $transition;
+
+      &:has(.button-header__close) {
+        height: 200%;
+      }
+    }
+  }
+}

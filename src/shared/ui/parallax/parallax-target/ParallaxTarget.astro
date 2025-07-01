@@ -1,0 +1,29 @@
+---
+interface Props {
+  class?: string
+  spead?: number
+}
+
+const { class: className, spead, ...props } = Astro.props as Props
+
+export { ParallaxTarget }
+---
+
+<div
+  class:list={['parallax-target', className]}
+  {...props}
+  data-parallax-target
+  data-parallax-speed={spead}
+>
+  <slot />
+</div>
+
+<style lang="scss">
+  .parallax-target {
+    will-change: transform;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100%;
+  }
+</style>

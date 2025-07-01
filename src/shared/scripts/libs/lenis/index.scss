@@ -1,0 +1,25 @@
+html {
+  .lenis {
+    height: auto;
+
+    &-smooth {
+      scroll-behavior: auto !important;
+
+      &[data-lenis-prevent] {
+        overscroll-behavior: contain;
+      }
+
+      iframe {
+        pointer-events: none;
+      }
+    }
+
+    &-scrolling iframe {
+      pointer-events: none;
+    }
+  }
+}
+
+[data-overlayscrollbars-viewport] {
+  overscroll-behavior: contain;
+}

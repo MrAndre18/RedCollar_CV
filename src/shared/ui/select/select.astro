@@ -1,0 +1,89 @@
+---
+import type { ITomSelectConfig, TTomSelectOption } from './select.type'
+
+interface Props {
+  name: string
+  id?: string
+  options?: TTomSelectOption[]
+  placeholder?: string
+  defaultValue?: string | string[]
+  multiple?: boolean
+  required?: boolean
+  disabled?: boolean
+  className?: string
+  config?: ITomSelectConfig
+}
+const {
+  name,
+  id = name,
+  options = [],
+  placeholder,
+  defaultValue,
+  multiple = false,
+  required = false,
+  disabled,
+  className,
+  config
+} = Astro.props
+
+const wrapperId = `ui-select-${Math.random().toString(36).slice(2, 11)}`
+
+const finalConfig = {
+  ...config,
+  ...(placeholder && { placeholder }),
+  ...(defaultValue && { defaultValue }),
+  ...(multiple && { multiple })
+}
+
+// Получаем slot контент для опций
+const slotContent = await Astro.slots.render('default')
+const hasSlotOptions = slotContent && slotContent.trim().length > 0
+
+export { Select }
+---
+
+<div
+  id={wrapperId}
+  class:list={['ui-select', className]}
+  data-input-parent
+>
+  <select
+    name={name}
+    id={id}
+    data-tomselect
+    class="w-full"
+    multiple={multiple === true ? 'multiple' : null}
+    required={required}
+    disabled={disabled}
+    data-config={JSON.stringify(finalConfig)}
+  >
+    {placeholder && <option value="">{placeholder}</option>}
+    {/* Опции из props */}
+    {
+      !hasSlotOptions &&
+        options.map(option => (
+          <option
+            value={option.value}
+            selected={
+              Array.isArray(defaultValue)
+                ? defaultValue.includes(option.value)
+                : defaultValue === option.value
+            }
+          >
+            {option.label}
+          </option>
+        ))
+    }
+
+    {/* Опции из slot */}
+    {hasSlotOptions && <Fragment set:html={slotContent} />}
+  </select>
+  <span
+    class="input__error"
+    data-error-container
+  ></span>
+</div>
+
+<style>
+  @import './select.scss';
+</style>

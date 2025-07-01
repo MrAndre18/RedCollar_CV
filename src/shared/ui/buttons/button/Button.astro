@@ -1,0 +1,66 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+interface ButtonProps extends astroHTML.JSX.ButtonHTMLAttributes {
+  as?: 'button' | 'div' | 'span'
+  href?: never
+}
+
+interface AnchorProps extends astroHTML.JSX.AnchorHTMLAttributes {
+  as?: 'a'
+  href: string
+}
+
+type Props = (ButtonProps | AnchorProps) & {
+  variant?: 'text' | 'contained' | 'outlined'
+  color?: 'light' | 'primary'
+  class?: string
+  startIcon?: any
+  endIcon?: any
+}
+
+const {
+  as,
+  variant = 'contained',
+  color = 'primary',
+  class: className,
+  startIcon: StartIcon,
+  endIcon: EndIcon,
+  ...props
+} = Astro.props as Props
+
+const isLink: boolean = 'href' in Astro.props
+const Tag: Props['as'] = isLink ? 'a' : as ? as : 'button'
+
+export { Button }
+---
+
+<Tag
+  {...props as HTMLAttributes<typeof Tag>}
+  class:list={[
+    'button',
+    { [`button_variant_${variant}`]: !!variant },
+    { [`button_color_${color}`]: !!color },
+    className
+  ]}
+>
+  {
+    StartIcon && (
+      <span class="button__icon button__icon_left">
+        <StartIcon />
+      </span>
+    )
+  }
+  <span class="button__text"><slot /></span>
+  {
+    EndIcon && (
+      <span class="button__icon button__icon_right">
+        <EndIcon />
+      </span>
+    )
+  }
+</Tag>
+
+<style>
+  @import './index.scss';
+</style>

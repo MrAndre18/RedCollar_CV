@@ -1,0 +1,20 @@
+.wrapper {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  min-height: 100vh;
+  margin: 0 auto;
+
+  @apply text-primary;
+
+  main {
+    flex: 1 0;
+  }
+}
+
+.page-container {
+  min-height: 100vh;
+  padding-top: rem(156px);
+}

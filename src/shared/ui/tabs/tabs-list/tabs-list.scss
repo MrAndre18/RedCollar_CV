@@ -1,0 +1,24 @@
+.tabs-list {
+  scroll-behavior: smooth;
+
+  overflow-x: auto;
+  display: flex;
+  gap: rem(24px);
+  align-items: center;
+
+  margin-inline: rem(-24px);
+  padding-inline: rem(24px);
+
+  white-space: nowrap;
+  @include scrollbar-hidden();
+
+  @media #{media('<',d)} {
+    gap: rem(16px);
+
+    margin-bottom: 0;
+    margin-inline: rem(-16px);
+    padding-bottom: rem(16px);
+    padding-inline: rem(16px);
+    border-bottom: 1px solid #000000;
+  }
+}

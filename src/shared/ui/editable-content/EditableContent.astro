@@ -1,0 +1,21 @@
+---
+interface Props {
+  class?: string
+  children: any
+}
+
+const { class: className, ...props } = Astro.props as Props
+
+export { EditableContent }
+---
+
+<div
+  class:list={['editable-content', className]}
+  {...props}
+>
+  <slot />
+</div>
+
+<style is:global>
+  @import './editable-content.scss';
+</style>

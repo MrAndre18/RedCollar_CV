@@ -1,0 +1,62 @@
+.radio {
+  cursor: pointer;
+
+  position: relative;
+
+  display: inline-flex;
+  gap: rem(12px);
+  align-items: center;
+
+  @media #{media('>',t)} and (hover: hover) and (pointer: fine) {
+    &:hover {
+      .radio__circle {
+        @apply bg-gray-400;
+      }
+    }
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  &__input {
+    position: absolute;
+    opacity: 0;
+
+    &:checked + .radio__circle {
+      @apply border-blue-400 bg-blue-400;
+    }
+  }
+
+  &__circle {
+    position: relative;
+
+    display: inline-block;
+    flex-shrink: 0;
+
+    border: 2px solid;
+    border-radius: 50%;
+    border-radius: rem(36px);
+
+    @apply size-6 border-gray-300 bg-white;
+
+    @media #{media('<',d)} {
+      @apply size-5;
+    }
+  }
+
+  &__text {
+    font-family: $font;
+    font-size: rem(17px);
+    font-weight: 300;
+    font-style: normal;
+    line-height: 150%;
+
+    @apply text-gray-900;
+
+    @media #{media('<',d)} {
+      font-size: rem(14px);
+    }
+  }
+}

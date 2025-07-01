@@ -1,0 +1,29 @@
+@use 'sass:map';
+@use 'sass:math';
+@use 'sass:string';
+
+@function getVw($px, $width) {
+  @return math.div($px, $width) * 1vw;
+}
+
+html {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+  @media (min-width: 320px) {
+    font-size: getVw($fs, math.div(340px, 100));
+  }
+
+  @each $breakpoint in (375px, 576px, 768px, 1024px) {
+    @media (min-width: #{$breakpoint}) {
+      font-size: getVw($fs, math.div($breakpoint, 100));
+    }
+  }
+
+  @media (min-width: 1201px) {
+    font-size: getVw($fs, math.div(1920px, 100));
+  }
+
+  @media (min-width: 1920px) {
+    font-size: getVw($fs, math.div(1920px, 100));
+  }
+}

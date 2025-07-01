@@ -1,0 +1,41 @@
+---
+import CheckIcon from '@shared/assets/images/svg/checkbox-check.svg'
+
+type LabelProps = {
+  label: string
+  children?: never // явно запрещаем children при наличии label
+}
+
+type SlotProps = {
+  label?: never // явно запрещаем label при наличии слота
+  children: any
+}
+
+type BaseProps = Pick<
+  astroHTML.JSX.InputHTMLAttributes,
+  'checked' | 'disabled' | 'name' | 'readonly' | 'required' | 'value'
+> & {
+  class?: string
+}
+
+type Props = BaseProps & (LabelProps | SlotProps)
+
+const { class: className, label, ...props } = Astro.props as Props
+
+export { Checkbox }
+---
+
+<label class:list={['checkbox', className]}>
+  <input
+    type="checkbox"
+    {...props}
+  />
+  <span class="checkbox__box">
+    <CheckIcon />
+  </span>
+  <span class="checkbox__text text-20 devices:text-14"><slot>{label}</slot></span>
+</label>
+
+<style>
+  @import './checkbox.scss';
+</style>

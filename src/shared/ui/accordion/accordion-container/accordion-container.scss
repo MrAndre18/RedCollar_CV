@@ -1,0 +1,29 @@
+.accordion-container {
+  display: flex;
+  flex-direction: column;
+  gap: rem(24px);
+
+  @media #{media('<',d)} {
+    gap: rem(16px);
+  }
+
+  &_title-large {
+    :global(.accordion__trigger) {
+      @apply text-title-32;
+
+      @media #{media('<',d)} {
+        @apply text-title-16;
+      }
+    }
+  }
+
+  &_title-small {
+    :global(.accordion__trigger) {
+      @apply text-title-20;
+
+      @media #{media('<',d)} {
+        @apply text-title-16;
+      }
+    }
+  }
+}

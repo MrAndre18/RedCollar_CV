@@ -1,0 +1,38 @@
+---
+import ArrowIcon from '@shared/assets/images/svg/arrow-down.svg'
+
+interface Props {
+  id?: string
+  class?: string
+  label: string
+}
+
+const { class: className, label, id = '', ...props } = Astro.props as Props
+
+export { Dropdown }
+---
+
+<div
+  class:list={['dropdown', className]}
+  data-dropdown={id}
+  {...props}
+>
+  <button
+    data-dropdown-trigger
+    class="dropdown__trigger"
+  >
+    <span>{label}</span>
+    <ArrowIcon class="size-4" />
+  </button>
+
+  <div
+    data-dropdown-menu
+    class="dropdown__menu"
+  >
+    <slot />
+  </div>
+</div>
+
+<style>
+  @import './dropdown.scss';
+</style>

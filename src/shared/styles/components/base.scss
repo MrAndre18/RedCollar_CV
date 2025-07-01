@@ -1,0 +1,39 @@
+html {
+  font-family: $font;
+  font-weight: 300;
+  font-style: normal;
+  line-height: 150%;
+}
+
+.crop-text {
+  overflow: hidden;
+  display: -moz-box;
+  display: -webkit-box;
+  -moz-box-orient: vertical;
+  -webkit-box-orient: vertical;
+  box-orient: vertical;
+
+  text-overflow: ellipsis;
+}
+
+.test {
+  border: 1px solid red !important;
+}
+
+textarea {
+  caret-color: currentColor;
+}
+
+input {
+  outline: none !important;
+  caret-color: currentColor;
+
+  &:is(:-webkit-autofill, :autofill) {
+    transition-delay: 9999999999s;
+  }
+}
+
+[data-horizontal-scroll] {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}

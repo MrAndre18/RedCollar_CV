@@ -1,0 +1,23 @@
+---
+interface Props {
+  id: string
+  class?: string
+}
+
+const { class: className, id, ...props } = Astro.props as Props
+---
+
+<div
+  class:list={['tabs', className]}
+  data-tabs={id}
+  {...props}
+>
+  <slot name="tabs-list" />
+  <div class="tabs__panels">
+    <slot />
+  </div>
+</div>
+
+<style lang="scss">
+  @import './tabs.scss';
+</style>

@@ -1,0 +1,143 @@
+.title {
+  &_variant {
+    &_240 {
+      font-size: rem(240px);
+      line-height: 90%;
+      letter-spacing: -0.06em;
+
+      @media #{media('<', d)} {
+        font-size: rem(120px);
+        line-height: 90%;
+        letter-spacing: -0.06em;
+      }
+    }
+
+    &_140 {
+      font-size: rem(80px);
+      line-height: 100%;
+      letter-spacing: -0.03em;
+
+      @media #{media('<', d)} {
+        font-size: rem(28px);
+        line-height: 120%;
+        letter-spacing: -0.02em;
+      }
+    }
+
+    &_120 {
+      font-size: rem(120px);
+      line-height: 90%;
+      letter-spacing: -0.06em;
+
+      @media #{media('<', d)} {
+        font-size: rem(40px);
+        line-height: 110%;
+        letter-spacing: -0.02em;
+      }
+    }
+
+    &_80 {
+      font-size: rem(80px);
+      line-height: 100%;
+      letter-spacing: -4.8px;
+
+      @media #{media('<', d)} {
+        font-size: rem(32px);
+        line-height: 110%;
+        letter-spacing: -0.64px;
+      }
+    }
+
+    &_48 {
+      font-size: rem(48px);
+      line-height: 100%;
+      letter-spacing: -0.03em;
+
+      @media #{media('<', d)} {
+        font-size: rem(28px);
+        line-height: 120%;
+        letter-spacing: -0.02em;
+      }
+    }
+
+    &_32 {
+      font-size: rem(32px);
+      line-height: 140%;
+      letter-spacing: -0.02em;
+
+      @media #{media('<', d)} {
+        font-size: 20px;
+      }
+    }
+
+    &_24 {
+      font-size: rem(24px);
+      line-height: 150%;
+      letter-spacing: -0.02em;
+
+      @media #{media('<', d)} {
+        font-size: 18px;
+        line-height: 140%;
+      }
+    }
+
+    &_20 {
+      font-size: 20px;
+      line-height: 150%;
+      letter-spacing: -0.01em;
+
+      @media #{media('<', d)} {
+        font-size: 16px;
+        line-height: 140%;
+      }
+    }
+  }
+
+  &_color {
+    &_primary {
+      color: #1d1a3e;
+    }
+
+    &_white {
+      color: #ffffff;
+    }
+
+    &_blue {
+      color: #3267d3;
+    }
+
+    &_gray {
+      color: #80828b;
+    }
+
+    &_mixed {
+      color: #80828b;
+
+      :global(span) {
+        color: #3267d3;
+      }
+    }
+  }
+
+  &_weight {
+    &_300 {
+      font-weight: 300;
+    }
+
+    &_400 {
+      font-weight: 400;
+    }
+
+    &_500 {
+      font-weight: 500;
+    }
+
+    &_700 {
+      font-weight: 700;
+    }
+
+    &_800 {
+      font-weight: 800;
+    }
+  }
+}

@@ -1,0 +1,91 @@
+---
+import Text from '@shared/ui/text/Text.astro'
+
+enum ListAs {
+  OL = 'ol',
+  UL = 'ul'
+}
+
+interface ListItem {
+  title: string
+  subitems?: string[]
+}
+
+type ListItems = string[] | ListItem[]
+
+interface Props {
+  as?: ListAs
+  variant: 'bullet' | 'duo-numeric' | 'numeric'
+  color?: 'white' | 'gray'
+  class?: string
+  items: ListItems
+}
+
+const {
+  as = ListAs.UL,
+  variant = 'bullet',
+  color = 'gray',
+  class: className,
+  items,
+  ...props
+} = Astro.props as Props
+
+const Tag: ListAs = as
+
+function isListItem(item: unknown): item is ListItem {
+  return typeof item === 'object' && item !== null && 'title' in item
+}
+---
+
+<Tag
+  {...props}
+  class:list={[
+    'list',
+    { [`list_variant_${variant}`]: !!variant },
+    variant == 'duo-numeric' && 'bullet',
+    className
+  ]}
+>
+  {
+    items ? (
+      variant === 'duo-numeric' && items.length > 0 && isListItem(items[0]) ? (
+        (items as ListItem[]).map((item, index) => (
+          <li class="duo-numeric">
+            <Text color={color}>
+              <span class="duo-numeric__title">
+                <span>{index + 1}. </span>
+                <span>{item.title}</span>
+              </span>
+              {item.subitems && (
+                <ul class="duo-numeric__sublist">
+                  {item.subitems.map((subitem, subindex) => (
+                    <li>
+                      <span class="duo-numeric__subitem">
+                        <span>
+                          {index + 1}.{subindex + 1}
+                        </span>
+                        <span>{subitem}</span>
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </Text>
+          </li>
+        ))
+      ) : (
+        (items as string[]).map(item => (
+          <li>
+            <Text color={color}>{item}</Text>
+          </li>
+        ))
+      )
+    ) : (
+      <slot />
+    )
+  }
+</Tag>
+
+<style>
+  @import './list.scss';
+</style>

@@ -1,0 +1,29 @@
+---
+import Icon from '@shared/ui/icon/Icon.astro'
+
+interface Props {
+  id: string
+  class?: string
+  variant: 'prev' | 'next'
+}
+
+const { class: className, variant, id, ...props } = Astro.props as Props
+
+export { SliderButton }
+---
+
+<button
+  class:list={['slider-button', className]}
+  data-swiper-button-prev={variant === 'prev' ? id : undefined}
+  data-swiper-button-next={variant === 'next' ? id : undefined}
+  {...props}
+>
+  <Icon
+    name={variant === 'prev' ? 'arrow-left' : 'arrow-right'}
+    class="slider-button__icon"
+  />
+</button>
+
+<style>
+  @import './slider-button.scss';
+</style>

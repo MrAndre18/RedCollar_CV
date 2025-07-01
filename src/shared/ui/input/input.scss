@@ -1,0 +1,83 @@
+.input {
+  cursor: text;
+
+  position: relative;
+
+  display: block;
+
+  padding-bottom: 13px;
+  border-bottom: 3px solid;
+
+  transition: border-color $transition;
+
+  @apply border-gray-light text-20;
+
+  @media #{media('>',d)} and (hover: hover) and (pointer: fine) {
+    &:hover {
+      @apply border-primary;
+    }
+  }
+
+  @media #{media('<',d)} {
+    padding-bottom: 14px;
+    border-bottom-width: 2px;
+
+    @apply text-14;
+  }
+
+  &:focus-within {
+    @apply border-primary;
+  }
+
+  &__field {
+    display: block;
+    width: 100%;
+    background: none;
+
+    &::placeholder {
+      user-select: none;
+      color: inherit;
+      transition: opacity $transition-timing-function 0.2s;
+    }
+
+    &:focus::placeholder {
+      opacity: 0;
+    }
+  }
+
+  &:has(input:not(:placeholder-shown)),
+  &:has(.input__error.visible) {
+    @apply border-primary;
+  }
+
+  &:has(input[disabled]) {
+    pointer-events: none;
+    cursor: auto;
+
+    @apply border-gray-light text-secondary;
+  }
+
+  &__error {
+    pointer-events: none;
+    will-change: opacity, transform;
+
+    position: absolute;
+    top: calc(100% + 4px);
+    transform: translateY(-4px);
+
+    height: fit-content;
+
+    transition:
+      opacity,
+      transform $transition;
+
+    @apply text-12 text-red;
+
+    &:not(:empty),
+    &.visible {
+      pointer-events: auto;
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+}

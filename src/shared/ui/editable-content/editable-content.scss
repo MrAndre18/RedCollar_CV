@@ -1,0 +1,199 @@
+.editable-content {
+
+  p,
+  li,
+  span {
+    font-size: rem(20px);
+    font-weight: 300;
+    line-height: 150%;
+    color: $text-color;
+
+    @media #{media('<',d)} {
+      font-size: rem(14px);
+    }
+
+    strong,
+    b {
+      font-weight: 700;
+    }
+
+    em,
+    i {
+      font-style: italic;
+    }
+
+    u {
+      text-decoration: underline;
+    }
+
+    s {
+      text-decoration: line-through;
+    }
+
+    a {
+      display: inline;
+    }
+  }
+
+  a {
+    color: #9CC6F1;
+    cursor: pointer;
+    font-weight: 700;
+    transition: color $transition;
+
+    @media #{media('>',d)} and (hover: hover) and (pointer: fine) {
+      &:hover {
+        color: #262D3B;
+      }
+    }
+  }
+
+  /* Заголовки */
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: $font-title;
+  }
+
+  h1 {
+    font-size: rem(40px);
+    font-weight: 500;
+    line-height: 130%;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+
+    @media #{media('<',d)} {
+      font-size: rem(20px);
+    }
+  }
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: rem(32px);
+    font-weight: 500;
+    line-height: 130%;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+
+    @media #{media('<',d)} {
+      font-size: rem(16px);
+    }
+  }
+
+  /* Маркированные списки */
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: rem(16px);
+
+    li {
+      position: relative;
+      display: flex;
+      gap: rem(24px);
+
+      &::before {
+        content: '';
+
+        width: rem(34px);
+        height: rem(34px);
+
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='34' viewBox='0 0 34 34' fill='none'%3E%3Crect x='12' y='12' width='9.8994' height='9.8994' fill='%239CC6F1'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-size: contain;
+
+        @media #{media('<',d)} {
+          width: rem(20px);
+          height: rem(20px);
+        }
+      }
+    }
+  }
+
+  /* Нумерованные списки */
+
+  ol {
+    // padding-left: 32px;
+    list-style-type: none;
+    counter-reset: item;
+
+    @media #{media('<',d)} {
+      // padding-left: rem(20px);
+    }
+
+    >li {
+      counter-increment: item;
+
+      position: relative;
+
+      // :not(:last-child) {
+      //   margin-bottom: 20px;
+      // }
+
+      &:not(:has(> ol))::before {
+        content: counter(item) '.';
+        // position: absolute;
+        left: -32px;
+        width: 28px;
+        text-align: right;
+        // padding-left: 40px;
+        padding-right: 8px;
+      }
+
+      >ul {
+        // margin-top: 20px;
+        padding-left: 16px;
+
+        // @media #{media('<',d)} {
+        //   margin-top: rem(12px);
+        // }
+      }
+
+      >ol {
+        // margin-top: 20px;
+        counter-reset: subitem;
+
+        >li {
+          counter-increment: subitem;
+          // &:not(:first-child) {
+          //   margin-top: 20px;
+          // }
+          padding-left: 56px;
+
+          &::before {
+            content: counter(item) '.' counter(subitem) '. ';
+            left: -64px;
+            width: 50px;
+            // font-weight: 500;
+            padding-right: 8px;
+            padding-left: 64px;
+            position: absolute;
+
+            @media #{media('<',d)} {
+              padding-right: rem(4px);
+            }
+          }
+        }
+
+        >ol {
+          counter-reset: subsubitem;
+
+          >li {
+            counter-increment: subsubitem;
+
+            &::before {
+              content: counter(item) '.' counter(subitem) '.' counter(subsubitem) ' ';
+            }
+          }
+        }
+      }
+    }
+  }
+}

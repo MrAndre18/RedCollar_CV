@@ -1,0 +1,30 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+interface Props extends HTMLAttributes<'button'> {
+  id: string
+  isActive?: boolean
+  class?: string
+}
+
+const { class: className, id, isActive = false, ...props } = Astro.props as Props
+---
+
+<li>
+  <button
+    class:list={['tab', className, { active: isActive }]}
+    {...props}
+    type="button"
+    role="tab"
+    id={id}
+    aria-selected={isActive}
+    aria-controls={`${id}-panel`}
+    tabindex={isActive ? '0' : '-1'}
+  >
+    <slot />
+  </button>
+</li>
+
+<style>
+  @import './tab.scss';
+</style>

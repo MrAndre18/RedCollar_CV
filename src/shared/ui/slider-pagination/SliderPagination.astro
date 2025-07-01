@@ -1,0 +1,22 @@
+---
+interface Props {
+  class?: string
+  id: string
+  size?: 'small' | 'large'
+}
+
+const { class: className, id, size = 'small', ...props } = Astro.props as Props
+
+export { SliderPagination }
+---
+
+<span
+  class:list={['slider-pagination', { [`slider-pagination_size_${size}`]: !!size }, className]}
+  data-swiper-pagination={id}
+  {...props}
+>
+</span>
+
+<style>
+  @import './slider-pagination.scss';
+</style>

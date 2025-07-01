@@ -1,0 +1,34 @@
+---
+interface Props {
+  as?: 'p' | 'span'
+  variant?: '32' | '24' | '20' | '17' | '14' | '12'
+  color?: 'white' | 'gray' | 'blue'
+  class?: string
+}
+
+const {
+  as: ComponentTag = 'p',
+  variant = '20',
+  color = 'gray',
+  class: className,
+  ...props
+} = Astro.props as Props
+
+export { Text }
+---
+
+<ComponentTag
+  {...props}
+  class:list={[
+    'text',
+    { [`text_variant_${variant}`]: !!variant },
+    { [`text_color_${color}`]: !!color },
+    className
+  ]}
+>
+  <slot />
+</ComponentTag>
+
+<style>
+  @import './Text.scss';
+</style>

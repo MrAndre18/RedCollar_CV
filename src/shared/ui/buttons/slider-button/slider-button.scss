@@ -1,0 +1,33 @@
+.slider-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: rem(112px);
+  height: rem(112px);
+  flex-shrink: 0;
+  border-radius: rem(4px);
+  background-color: #f5f6f73d;
+  color: #FFFFFF;
+  backdrop-filter: blur(30px);
+  transition: background-color $transition, color $transition;
+
+  @media #{media('>',d)} and (hover: hover) and (pointer: fine) {
+    &:hover {
+      background-color: #F5F6F759;
+    }
+  }
+
+  &.swiper-button-disabled {
+    pointer-events: none;
+    background-color: #F5F6F73D;
+
+    .slider-button__icon {
+      opacity: 0.4;
+    }
+  }
+
+  &__icon {
+    width: rem(28px);
+    height: rem(28px);
+  }
+}

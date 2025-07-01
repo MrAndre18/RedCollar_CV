@@ -1,0 +1,74 @@
+ul.list {
+  &_variant {
+    &_bullet {
+      display: flex;
+      flex-direction: column;
+      gap: rem(12px);
+
+      :global(li) {
+        position: relative;
+        z-index: 0;
+        padding-left: rem(40px);
+
+        &::before {
+          content: '';
+
+          position: absolute;
+          z-index: z(base);
+          top: 0;
+          left: 0;
+
+          width: rem(28px);
+          height: rem(28px);
+
+          background-image: url("data:image/svg+xml,%3Csvg width='28' height='28' viewBox='0 0 28 28' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='9' y='9' width='10' height='10' rx='3' fill='%233267D3'/%3E%3C/svg%3E%0A");
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: cover;
+        }
+      }
+    }
+  }
+}
+
+ol.list {
+  &_variant {
+    &_numeric {
+      counter-reset: num;
+      display: flex;
+      flex-direction: column;
+      gap: rem(12px);
+
+      li {
+        position: relative;
+        padding-left: rem(40px);
+
+        &::before {
+          content: counter(num);
+          counter-increment: num;
+
+          position: absolute;
+          top: 0;
+          left: rem(10px);
+
+          display: inline-block;
+
+          font-family: $font;
+          font-size: rem(20px);
+          font-weight: 300;
+          font-style: normal;
+          line-height: 150%;
+          text-align: right;
+
+          color: #3267d3;
+        }
+      }
+    }
+  }
+}
+
+.duo-numeric {
+  &__sublist {
+    padding-left: 12px;
+  }
+}

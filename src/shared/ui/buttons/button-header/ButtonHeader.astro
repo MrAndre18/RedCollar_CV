@@ -1,0 +1,90 @@
+---
+import CompareIcon from '@shared/assets/images/svg/chart.svg'
+import FavoriteIcon from '@shared/assets/images/svg/like.svg'
+import CloseIcon from '@shared/assets/images/svg/close.svg'
+import type { JSX } from 'astro/jsx-runtime'
+
+type TVariants = 'menu' | 'catalog' | 'search' | 'compare' | 'favorite'
+
+interface Props {
+  class?: string
+  variant: 'menu' | 'catalog' | 'search' | 'compare' | 'favorite' | 'tel'
+  'data-target'?: 'menu' | 'catalog' | 'search' | 'compare' | 'favorite' | 'menu-mob'
+}
+
+const { class: className, variant, ...props } = Astro.props as Props
+
+interface IVariant {
+  title: string
+  href?: string
+  icon: JSX.Element
+  count?: number
+  hasCloseState?: boolean
+}
+
+const variants = {
+  menu: {
+    title: 'Меню',
+    icon: FavoriteIcon,
+    hasCloseState: true
+  },
+  catalog: {
+    title: 'Каталог',
+    icon: FavoriteIcon,
+    hasCloseState: true
+  },
+  search: {
+    title: 'Поиск',
+    icon: FavoriteIcon,
+    hasCloseState: true
+  },
+  compare: {
+    title: 'Сравнение',
+    icon: CompareIcon,
+    count: 2,
+    href: `${import.meta.env.BASE_URL}/compare`,
+    hasCloseState: true
+  },
+  favorite: {
+    title: 'Избранное',
+    icon: FavoriteIcon,
+    count: 0,
+    href: `${import.meta.env.BASE_URL}/favorites`,
+    hasCloseState: true
+  },
+  tel: {
+    title: '8 800 505 08 10',
+    href: 'tel:88005050810',
+    icon: FavoriteIcon
+  }
+}
+
+const { title, href, icon: Icon, count, hasCloseState } = variants[variant] as IVariant
+
+const Tag = href ? 'a' : 'button'
+
+export { ButtonHeader }
+---
+
+<Tag
+  class:list={['button-header', { [`button-header_${variant}`]: !!variant }, className]}
+  href={href}
+  data-header="button"
+  {...props}
+>
+  <span class="button-header__top desktop">
+    <span class="button-header__title">{title}</span>
+    {typeof count === 'number' && <span class="button-header__count">{count}</span>}
+  </span>
+
+  <span class="button-header__icon">
+    <span class="button-header__icon-inner">
+      <Icon />
+      {hasCloseState && <CloseIcon class="button-header__close" />}
+    </span>
+  </span>
+</Tag>
+
+<style>
+  @import './button-header.scss';
+</style>

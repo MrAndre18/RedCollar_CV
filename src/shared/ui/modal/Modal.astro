@@ -1,0 +1,93 @@
+---
+interface Props {
+  class?: string
+  id: string
+  containerProps?: Record<string, any>
+  headerProps?: Record<string, any>
+  contentProps?: Record<string, any>
+  footerProps?: Record<string, any>
+}
+
+const {
+  class: className,
+  id,
+  containerProps = {},
+  headerProps = {},
+  contentProps = {},
+  footerProps = {},
+  ...props
+} = Astro.props as Props
+
+export { Modal }
+---
+
+<div
+  class:list={['modal', className]}
+  data-modal={id}
+  aria-hidden="true"
+  role="dialog"
+  aria-modal="true"
+  {...props}
+>
+  <div
+    class="modal__backdrop"
+    data-modal-backdrop
+  >
+  </div>
+  <div
+    class:list={['modal__container', containerProps.class]}
+    role="document"
+    {...containerProps}
+  >
+    <button
+      class="modal__close"
+      data-modal-close
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="32"
+        height="32"
+        viewBox="0 0 32 32"
+        fill="none"
+      >
+        <path
+          d="M8.75 8.75012L23.25 23.2501"
+          stroke="black"
+          stroke-width="3"
+          stroke-linecap="square"
+          stroke-linejoin="round"
+        ></path>
+        <path
+          d="M8.75 23.2501L23.25 8.75012"
+          stroke="black"
+          stroke-width="3"
+          stroke-linecap="square"
+          stroke-linejoin="round"
+        ></path>
+      </svg>
+    </button>
+
+    <div
+      class:list={['modal__header', headerProps.class]}
+      {...headerProps}
+    >
+      <slot name="header" />
+    </div>
+    <div
+      class:list={['modal__content', contentProps.class]}
+      {...contentProps}
+    >
+      <slot name="content" />
+    </div>
+    <div
+      class:list={['modal__footer', footerProps.class]}
+      {...footerProps}
+    >
+      <slot name="footer" />
+    </div>
+  </div>
+</div>
+
+<style>
+  @import './modal.scss';
+</style>

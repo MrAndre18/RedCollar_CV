@@ -1,0 +1,20 @@
+---
+interface Props {
+  class?: string
+  src: string
+  id: string
+}
+
+const { class: className, src, id, ...props } = Astro.props as Props
+
+export { GalleryItem }
+---
+
+<div
+  class:list={['gallery-item', className]}
+  {...props}
+  data-src={src}
+  data-fancybox={id}
+>
+  <slot />
+</div>

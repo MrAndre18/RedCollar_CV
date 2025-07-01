@@ -1,0 +1,53 @@
+.fancybox {
+  &__content {
+    max-width: rem(1128px) !important;
+    height: 80% !important;
+    padding: 0 !important;
+    padding: 0 !important;
+
+    outline: none !important;
+
+    iframe {
+      outline: none !important;
+    }
+  }
+
+  &__backdrop {
+    background: rgba(38, 43, 44, 0.8) !important;
+  }
+
+  &__footer {
+    .f-thumbs {
+      &__track {
+        padding: rem(8px) 0 rem(24px) !important;
+      }
+
+      &__slide {
+        --f-thumb-gap: #{rem(12px)};
+
+        width: rem(48px);
+        height: rem(48px);
+
+        &__button {
+          box-sizing: border-box;
+          width: 100%;
+          height: 100%;
+          padding-inline: rem(6px);
+          border-radius: 0;
+
+          @apply bg-white;
+        }
+
+        &.is-nav-selected .f-thumbs__slide__button {
+          &::after {
+            border-radius: 0;
+          }
+        }
+
+        &__img {
+          position: relative;
+        }
+      }
+    }
+  }
+}

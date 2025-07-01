@@ -1,0 +1,26 @@
+.tab {
+  transition: color $transition;
+
+  @apply text-title-32 text-secondary;
+
+  @media #{media('<',d)} {
+    @apply text-title-18;
+  }
+
+  @media #{media('>',t)} and (hover: hover) and (pointer: fine) {
+    &:hover {
+      @apply text-primary;
+    }
+  }
+
+  &.active {
+    pointer-events: none;
+
+    @apply text-primary;
+  }
+
+  &[disabled] {
+    pointer-events: none;
+    opacity: 0.4;
+  }
+}

@@ -1,0 +1,71 @@
+---
+import type { ToastOptionsDOM } from './toast.type'
+import { SUPPORTED_KEYS } from './toast.type'
+
+export interface IToastProps extends ToastOptionsDOM {
+  id: string
+  class?: string
+}
+
+const props = Astro.props as IToastProps & Record<string, any>
+
+const { id = '', class: className } = props
+
+// Формируем data-* атрибуты из SUPPORTED_KEYS
+const dataAttrs = Object.fromEntries(
+  SUPPORTED_KEYS.filter(key => key in props).map(key => [`data-${key.toLowerCase()}`, props[key]])
+)
+
+// Исключаем SUPPORTED_KEYS и id/class из rest
+const rest = Object.fromEntries(
+  Object.entries(props).filter(
+    ([key]) =>
+      key !== 'id' && key !== 'class' && !SUPPORTED_KEYS.includes(key as keyof ToastOptionsDOM)
+  )
+)
+
+export { Toast }
+---
+
+<div
+  id={id}
+  class:list={['toast', className]}
+  data-toast={id}
+  data-gravity="top"
+  data-position="right"
+  {...dataAttrs}
+  {...rest}
+>
+  <button
+    data-toast-close
+    class="toast__close"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="58"
+      height="58"
+      viewBox="0 0 58 58"
+      fill="none"
+    >
+      <path
+        d="M21.75 21.7502L36.25 36.2502"
+        stroke="black"
+        stroke-width="3"
+        stroke-linecap="square"
+        stroke-linejoin="round"
+      ></path>
+      <path
+        d="M21.75 36.2502L36.25 21.7502"
+        stroke="black"
+        stroke-width="3"
+        stroke-linecap="square"
+        stroke-linejoin="round"
+      ></path>
+    </svg>
+  </button>
+  <slot />
+</div>
+
+<style is:global>
+  @import './toast.scss';
+</style>

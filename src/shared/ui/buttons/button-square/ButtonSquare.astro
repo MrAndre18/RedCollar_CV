@@ -1,0 +1,58 @@
+---
+import Icon, { type IconKey } from '@shared/ui/icon/Icon.astro'
+import type { HTMLAttributes } from 'astro/types'
+
+interface ButtonSquareProps extends astroHTML.JSX.ButtonHTMLAttributes {
+  as?: 'button' | 'div' | 'span'
+  href?: never
+}
+
+interface AnchorProps extends astroHTML.JSX.AnchorHTMLAttributes {
+  as?: 'a'
+  href: string
+}
+
+type Props = (ButtonSquareProps | AnchorProps) & {
+  class?: string
+  icon: IconKey
+  size?: '48' | '60' | '64' | '124'
+  color?: 'default' | 'accent'
+}
+
+const {
+  as,
+  class: className,
+  icon,
+  size = '48',
+  color = 'default',
+  ...props
+} = Astro.props as Props
+
+const isLink: boolean = 'href' in Astro.props
+const Tag: Props['as'] = isLink ? 'a' : as ? as : 'button'
+
+export { ButtonSquare }
+---
+
+<Tag
+  {...props as HTMLAttributes<typeof Tag>}
+  class:list={[
+    'button-square',
+    { [`button-square_size_${size}`]: !!size },
+    { [`button-square_color_${color}`]: !!color },
+    className
+  ]}
+>
+  {
+    icon && (
+      <Icon
+        name={icon}
+        class="button-square__icon"
+      />
+    )
+  }
+</Tag>
+
+<style>
+  @import './button-square.scss';
+</style>

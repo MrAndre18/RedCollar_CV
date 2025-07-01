@@ -1,0 +1,27 @@
+// Стили библиотек
+@import 'lenis/dist/lenis.css';
+@import 'overlayscrollbars/overlayscrollbars.css';
+@import 'swiper/css/bundle';
+@import 'tom-select/dist/css/tom-select.css';
+@import 'tippy.js/dist/tippy.css';
+
+@import '../../../node_modules/nouislider/dist/nouislider.min.css';
+
+// Стили проекта
+@import '@shared/scripts/libs/lenis';
+
+// utils
+@import 'utils/reset';
+@import 'utils/fonts';
+@import 'utils/core';
+
+// components
+@import 'components/scrollbars';
+@import 'components/base';
+@import 'components/toasts';
+
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
