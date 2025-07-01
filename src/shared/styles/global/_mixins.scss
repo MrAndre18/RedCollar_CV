@@ -30,28 +30,6 @@
   }
 }
 
-@mixin border() {
-  position: relative;
-
-  &::after {
-    pointer-events: none;
-    content: '';
-
-    position: absolute;
-    z-index: 2;
-    top: -1px;
-    left: -1px;
-
-    width: calc(100% + 2px);
-    height: calc(100% + 2px);
-    border: 1px solid;
-
-    background: transparent;
-
-    @apply border-primary;
-  }
-}
-
 @mixin cropText($lineCount) {
   overflow: hidden;
   display: -moz-box;
