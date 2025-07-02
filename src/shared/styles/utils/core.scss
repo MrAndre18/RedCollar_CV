@@ -13,17 +13,17 @@ html {
     font-size: getVw($fs, math.div(340px, 100));
   }
 
-  @each $breakpoint in (375px, 576px, 768px, 1024px) {
+  @each $breakpoint in (360px, 576px, 768px, 1024px) {
     @media (min-width: #{$breakpoint}) {
       font-size: getVw($fs, math.div($breakpoint, 100));
     }
   }
 
   @media (min-width: 1201px) {
-    font-size: getVw($fs, math.div(1920px, 100));
+    font-size: getVw($fs, math.div(1440px, 100));
   }
 
-  @media (min-width: 1920px) {
-    font-size: getVw($fs, math.div(1920px, 100));
+  @media (min-width: 1440px) {
+    font-size: getVw($fs, math.div(1440px, 100));
   }
 }
