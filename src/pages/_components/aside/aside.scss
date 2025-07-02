@@ -1,37 +1,98 @@
 .aside {
-  position: relative;
+  position: sticky;
+  top: 0;
   display: flex;
   flex-direction: column;
-  min-height: rem(780px);
-  height: fit-content;
+  min-height: fit-content;
+  height: 100vh;
+
+  @media #{media('<',d)} {
+    position: static;
+    flex-direction: row;
+    height: auto;
+  }
+
+  @media #{media('<',m)} {
+    flex-direction: column;
+  }
 
   &__image {
     height: rem(355px);
+    flex-shrink: 0;
 
     :global(.picture__img) {
       transform: scale(1.2);
       object-position: left bottom;
+
+      @media #{media('<',d)} {
+        transform: scale(1);
+      }
+    }
+
+    @media #{media('<',d)} {
+      width: 50%;
+      height: auto;
+      aspect-ratio: 1 / 1;
+    }
+
+    @media #{media('<',m)} {
+      height: rem(355px);
+      width: 100%;
+      aspect-ratio: unset;
     }
   }
 
   &__content {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: calc(100% - rem(326px));
+    position: relative;
+    z-index: 2;
+    height: calc(100% - rem(307px));
+    min-height: fit-content;
+    margin-top: rem(-48px);
     width: 100%;
     background-color: #F51B1B;
     padding: rem(40px) rem(24px);
     border-radius: rem(24px) rem(24px) 0 0;
 
+    @media #{media('<',d)} {
+      margin-top: 0;
+      margin-left: rem(-24px);
+      width: auto;
+      height: auto;
+      flex-grow: 1;
+      border-radius: rem(20px) 0 0 rem(20px);
+    }
+
+    @media #{media('<',m)} {
+      margin-left: 0;
+      margin-top: rem(-48px);
+      border-radius: rem(20px) rem(20px) 0 0;
+      padding: rem(24px) rem(16px) rem(40px);
+    }
+
     &-decor {
       position: absolute;
       bottom: 100%;
       left: 50%;
-      transform: translateX(-50%);
+      transform: translateX(-50%) translateY(1px);
       color: #F51B1B;
       width: rem(60px);
       height: rem(19px);
+
+      @media #{media('<',d)} {
+        bottom: unset;
+        left: unset;
+        right: 100%;
+        top: 50%;
+        transform: translateX(40%) translateY(-50%) rotate(-90deg);
+      }
+
+      @media #{media('<',m)} {
+        bottom: 100%;
+        left: 50%;
+        right: unset;
+        top: unset;
+        transform: translateX(-50%) translateY(1px);
+      }
     }
   }
 

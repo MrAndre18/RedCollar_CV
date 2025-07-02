@@ -16,7 +16,7 @@ export const commonFunction = (): void => {
 
   initHorizontalScroll()
 
-  StickyManager.init()
+  // StickyManager.init()
 }
 
 document.addEventListener('DOMContentLoaded', () => {

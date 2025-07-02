@@ -9,13 +9,18 @@ import Icon from '@shared/ui/icon/Icon.astro'
   pageName="Андрей Сидоренко | CV для стажировки"
   class="relative p-10 devices:p-5 devices:pb-[3.625rem]"
 >
-  <Icon
-    name="logo"
-    initial
-    class="absolute right-10 top-[1.625rem]"
-  />
+  <a
+    href="https://redcollar.ru/"
+    class="absolute right-10 top-[1.625rem] devices:static devices:mb-12"
+  >
+    <Icon
+      name="logo"
+      initial
+      class="h-6 w-auto devices:h-[1.375rem]"
+    />
+  </a>
 
-  <div class="grid grid-cols-8 gap-6">
+  <div class="grid grid-cols-8 gap-6 devices:flex devices:flex-col devices:gap-10">
     <Aside class="col-span-2" />
 
     <Info class="col-span-6" />

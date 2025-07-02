@@ -6,6 +6,7 @@
 
   @media #{media('<',d)} {
     gap: rem(24px);
+    padding-top: 0;
   }
 
   @media #{media('<',m)} {
@@ -20,9 +21,11 @@
     display: flex;
     flex-direction: column;
     gap: rem(20px);
+    flex-grow: 1;
 
     @media #{media('<',m)} {
       gap: rem(24px);
+      padding: rem(40px) rem(15px) rem(32px);
     }
 
     &-decor {
@@ -33,12 +36,22 @@
       width: rem(60px);
       height: rem(21px);
       background: #000;
+
+      @media #{media('<',d)} {
+        left: 50%;
+        transform: translateX(-50%);
+      }
     }
   }
 
   &__item {
     display: flex;
     gap: rem(24px);
+
+    @media #{media('<',m)} {
+      gap: rem(16px);
+      flex-direction: column;
+    }
 
     &:not(:last-child) {
       border-bottom: 1px solid rgba(255, 255, 255, 0.4);
@@ -52,6 +65,10 @@
     &-title {
       width: rem(172px);
       flex-shrink: 0;
+
+      @media #{media('<',m)} {
+        width: auto;
+      }
     }
 
     &-list {
