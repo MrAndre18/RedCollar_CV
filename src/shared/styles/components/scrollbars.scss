@@ -26,11 +26,11 @@
   /* Скругление углов ползунка (handle) */
   --os-handle-border-radius: 6px;
   /* Цвет ползунка в обычном состоянии */
-  --os-handle-bg: rgba(0, 0, 0, 0.4);
+  --os-handle-bg: rgba(255, 255, 255, 0.4);
   /* Цвет ползунка при наведении */
-  --os-handle-bg-hover: rgba(0, 0, 0, 0.6);
+  --os-handle-bg-hover: rgba(255, 255, 255, 0.6);
   /* Цвет ползунка при нажатии */
-  --os-handle-bg-active: rgba(0, 0, 0, 0.8);
+  --os-handle-bg-active: rgba(255, 255, 255, 0.8);
 
   /* Граница ползунка в обычном состоянии */
   --os-handle-border: none;

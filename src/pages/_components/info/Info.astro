@@ -1,0 +1,159 @@
+---
+import EditableContent from '@shared/ui/editable-content/EditableContent.astro'
+import Icon from '@shared/ui/icon/Icon.astro'
+import Text from '@shared/ui/text/Text.astro'
+import Title from '@shared/ui/title/Title.astro'
+
+interface Props {
+  class?: string
+}
+
+const { class: className, ...props } = Astro.props as Props
+
+const info = [
+  {
+    category: 'Образование',
+    items: [
+      {
+        title: 'Воронежский Государственный Университет',
+        subtitle: 'Прикладная математика и информатика',
+        years: '2017-2022'
+      },
+      {
+        title: 'Воронежский Государственный Университет',
+        subtitle: 'Прикладная математика и информатика',
+        years: '2017-2022'
+      },
+      {
+        title: 'Skillbox',
+        subtitle: 'Frontend-разработчик',
+        years: '2022'
+      }
+    ]
+  },
+  {
+    category: 'Карьера',
+    items: [
+      {
+        title: 'Воронежский Государственный Университет',
+        subtitle: 'Лаборант кафедры математики и информатики',
+        years: '2018-2019'
+      },
+      {
+        title: 'Воронежский Государственный Университет',
+        subtitle: 'Лаборант кафедры математики и информатики',
+        years: '2018-2019'
+      },
+      {
+        title: 'Red Collar',
+        subtitle: 'Frontend-разработчик',
+        years: '2022'
+      }
+    ]
+  }
+]
+
+const skills = ['HTML', 'CSS', 'JavaScript', 'React', 'Angular']
+
+export { Info }
+---
+
+<div
+  class:list={['info', className]}
+  {...props}
+>
+  <EditableContent>
+    <p>
+      Привет! Меня зовут Андрей, и я фронтенд-разработчик с опытом работы более 5 лет. Я увлечен
+      созданием красивых и функциональных веб-сайтов, которые могут удовлетворить потребности
+      пользователей и дать им лучший пользовательский опыт.
+    </p>
+    <br />
+
+    <p>Ниже я приведу несколько фактов обо мне, которые могут быть интересными:</p>
+    <br />
+
+    <ol>
+      <li>Я закончил университет по специальности "Информационные технологии" .</li>
+      <li>Я работал в нескольких веб-студиях и агентствах.</li>
+      <li>
+        Я умею работать с различными языками программирования и технологиями, такими как HTML, CSS,
+        JavaScript, jQuery, React и другими.
+      </li>
+    </ol>
+    <br />
+
+    <p>Некоторые из моих достижений и проектов:</p>
+    <br />
+
+    <ul>
+      <li>
+        Я создал несколько сайтов для малых бизнесов, которые помогли им привлекать больше клиентов
+        и улучшать свой бренд.
+      </li>
+      <li>
+        Я создал несколько сайтов для благотворительных организаций, которые помогли им собирать
+        средства и привлекать волонтеров.
+      </li>
+      <li>Я участвовал в различных хакатонах и конкурсах, где получил ценный опыт и знания.</li>
+    </ul>
+  </EditableContent>
+
+  <section class="info__content">
+    <Icon
+      name="decor"
+      class="info__content-decor"
+    />
+    {
+      info.map(({ category, items }) => (
+        <div class="info__item">
+          <Title
+            class="info__item-title"
+            size="16"
+          >
+            {category}
+          </Title>
+
+          <ul class="info__item-list">
+            {items.map(({ title, subtitle, years }) => (
+              <li>
+                <dl class="flex flex-col">
+                  <Text as="dt">{title}</Text>
+                  <Text
+                    as="dd"
+                    color="gray"
+                  >
+                    {subtitle}
+                  </Text>
+                  <Text
+                    as="dd"
+                    color="gray"
+                  >
+                    {years}
+                  </Text>
+                </dl>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+
+    <div class="info__item">
+      <Title
+        class="info__item-title"
+        size="16"
+      >
+        Навыки
+      </Title>
+
+      <ul class="flex flex-wrap gap-x-8 gap-y-4 devices:gap-x-4 devices:gap-y-2">
+        {skills.map(skill => <Text as="li">{skill}</Text>)}
+      </ul>
+    </div>
+  </section>
+</div>
+
+<style>
+  @import './info.scss';
+</style>

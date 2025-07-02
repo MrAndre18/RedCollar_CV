@@ -9,12 +9,12 @@ const { class: className, ...props } = Astro.props as Props
 export { EditableContent }
 ---
 
-<div
+<section
   class:list={['editable-content', className]}
   {...props}
 >
   <slot />
-</div>
+</section>
 
 <style is:global>
   @import './editable-content.scss';

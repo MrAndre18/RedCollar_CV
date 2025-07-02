@@ -1,0 +1,98 @@
+---
+import Icon, { type IconKey } from '@shared/ui/icon/Icon.astro'
+import Picture from '@shared/ui/picture/Picture.astro'
+import Text from '@shared/ui/text/Text.astro'
+import Title from '@shared/ui/title/Title.astro'
+
+interface Props {
+  class?: string
+}
+
+const { class: className, ...props } = Astro.props as Props
+
+const links: { text: string; href: string; icon: IconKey }[] = [
+  {
+    text: '+7 951 552 71 52',
+    href: 'tel:+79515527152',
+    icon: 'phone'
+  },
+  {
+    text: 'andrew09200@mail.ru',
+    href: 'mailto:andrew09200@mail.ru',
+    icon: 'mail'
+  },
+  {
+    text: 'andre_sid',
+    href: 'https://t.me/andre_sid',
+    icon: 'telegram'
+  },
+  {
+    text: 'https://github.com/MrAndre18',
+    href: 'https://github.com/MrAndre18',
+    icon: 'github'
+  }
+]
+
+export { Aside }
+---
+
+<aside
+  class:list={['aside', className]}
+  {...props}
+>
+  <Picture
+    src="profile"
+    alt="Андрей Сидоренко"
+    class="aside__image"
+  />
+
+  <div class="aside__content flex shrink-0 flex-col gap-10 devices:gap-8">
+    <Icon
+      name="decor2"
+      class="aside__content-decor"
+    />
+
+    <div class="flex shrink-0 flex-col gap-2 devices:gap-1">
+      <Title
+        as="h1"
+        size="24"
+        >Андрей Сидоренко</Title
+      >
+
+      <Text
+        as="span"
+        size="20"
+        >25 лет, Воронеж</Text
+      >
+    </div>
+
+    <div class="flex flex-col gap-5 devices:gap-4">
+      {
+        links.map(link => (
+          <a
+            href={link.href}
+            class="aside__link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Icon
+              name={link.icon}
+              class="aside__link-icon"
+            />
+            <Text
+              as="span"
+              size="20"
+              class="aside__link-text"
+            >
+              {link.text}
+            </Text>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</aside>
+
+<style>
+  @import './aside.scss';
+</style>

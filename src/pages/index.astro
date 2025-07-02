@@ -1,36 +1,28 @@
 ---
-import Button from '@shared/ui/buttons/button/Button.astro'
 import Layout from '@widgets/layout/Layout.astro'
-
-const pages = [
-  {
-    title: 'UI',
-    href: 'ui'
-  },
-  {
-    title: 'Главная',
-    href: 'main'
-  },
-  {
-    title: 'FrontAPI',
-    href: 'front-api'
-  }
-]
+import Aside from './_components/aside/Aside.astro'
+import Info from './_components/info/Info.astro'
+import Icon from '@shared/ui/icon/Icon.astro'
 ---
 
-<Layout pageName="index">
-  <h1 class="px-4 text-title-100 text-primary devices:text-title-40">Ссылки на страницы проекта</h1>
+<Layout
+  pageName="Андрей Сидоренко | CV для стажировки"
+  class="relative p-10 devices:p-5 devices:pb-[3.625rem]"
+>
+  <a
+    href="https://redcollar.ru/"
+    class="absolute right-10 top-[1.625rem] devices:static devices:mb-12"
+  >
+    <Icon
+      name="logo"
+      initial
+      class="h-6 w-auto devices:h-[1.375rem]"
+    />
+  </a>
 
-  <div class="mt-6 flex flex-col gap-4">
-    {
-      pages.map(page => (
-        <Button
-          href={`${page.href}`}
-          class="w-fit"
-        >
-          {page.title}
-        </Button>
-      ))
-    }
+  <div class="grid grid-cols-8 gap-6 devices:flex devices:flex-col devices:gap-10">
+    <Aside class="col-span-2" />
+
+    <Info class="col-span-6" />
   </div>
 </Layout>
