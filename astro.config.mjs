@@ -117,6 +117,7 @@ const updateBuildScripts = () => ({
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://mrandre18.github.io',
   base: basePath,
 
   devToolbar: {
