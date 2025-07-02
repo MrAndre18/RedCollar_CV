@@ -1,7 +1,23 @@
 ---
 import Layout from '@widgets/layout/Layout.astro'
+import Aside from './_components/aside/Aside.astro'
+import Info from './_components/info/Info.astro'
+import Icon from '@shared/ui/icon/Icon.astro'
 ---
 
-<Layout pageName="index">
-  <h1 class="px-4">Ссылки на страницы проекта</h1>
+<Layout
+  pageName="Андрей Сидоренко | CV для стажировки"
+  class="relative p-10 devices:p-5 devices:pb-[3.625rem]"
+>
+  <Icon
+    name="logo"
+    initial
+    class="absolute right-10 top-[1.625rem]"
+  />
+
+  <div class="grid grid-cols-8 gap-6">
+    <Aside class="col-span-2" />
+
+    <Info class="col-span-6" />
+  </div>
 </Layout>

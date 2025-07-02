@@ -2,9 +2,10 @@
 interface Props {
   pageName?: string
   props?: any
+  class?: string
 }
 
-const { pageName, ...props } = Astro.props as Props
+const { pageName, class: className, ...props } = Astro.props as Props
 
 export { Layout }
 ---
@@ -22,8 +23,31 @@ export { Layout }
     />
     <link
       rel="icon"
+      type="image/png"
+      href="/favicon/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link
+      rel="icon"
       type="image/svg+xml"
-      href="/favicon.svg"
+      href="/favicon/favicon.svg"
+    />
+    <link
+      rel="shortcut icon"
+      href="/favicon/favicon.ico"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicon/apple-touch-icon.png"
+    />
+    <meta
+      name="apple-mobile-web-app-title"
+      content="CV"
+    />
+    <link
+      rel="manifest"
+      href="/favicon/site.webmanifest"
     />
     <meta
       name="generator"
@@ -68,7 +92,7 @@ export { Layout }
   >
     <div class="wrapper">
       <main
-        class="page-container"
+        class:list={['page-container', className]}
         {...props}
       >
         <slot />

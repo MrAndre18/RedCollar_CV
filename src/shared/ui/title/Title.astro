@@ -1,35 +1,18 @@
 ---
 interface Props {
-  tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
-  variant?: '240' | '140' | '120' | '80' | '48' | '32' | '24' | '20'
-  color?: 'white' | 'primary' | 'mixed' | 'blue' | 'gray'
-  weight?: '300' | '400' | '500' | '700' | '800'
+  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span' | 'p'
+  size?: '24' | '16'
   class?: string
 }
 
-const {
-  tag = 'h2',
-  variant = '120',
-  color = 'primary',
-  weight = '400',
-  class: className,
-  ...props
-} = Astro.props as Props
-
-const Tag: string = tag
+const { as: Tag = 'h2', size = '16', class: className, ...props } = Astro.props as Props
 
 export { Title }
 ---
 
 <Tag
   {...props}
-  class:list={[
-    'title',
-    { [`title_variant_${variant}`]: !!variant },
-    { [`title_color_${color}`]: !!color },
-    { [`title_weight_${weight}`]: !!weight },
-    className
-  ]}
+  class:list={['title', { [`title_size_${size}`]: !!size }, className]}
 >
   <slot />
 </Tag>

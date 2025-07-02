@@ -1,0 +1,59 @@
+.aside {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: rem(780px);
+  height: fit-content;
+
+  &__image {
+    height: rem(355px);
+
+    :global(.picture__img) {
+      transform: scale(1.2);
+      object-position: left bottom;
+    }
+  }
+
+  &__content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: calc(100% - rem(326px));
+    width: 100%;
+    background-color: #F51B1B;
+    padding: rem(40px) rem(24px);
+    border-radius: rem(24px) rem(24px) 0 0;
+
+    &-decor {
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #F51B1B;
+      width: rem(60px);
+      height: rem(19px);
+    }
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    gap: rem(16px);
+    transition: color $transition;
+
+    @media #{media('>',d)} and (hover: hover) and (pointer: fine) {
+      &:hover {
+        color: #000;
+      }
+    }
+
+    &-text {
+      color: currentColor;
+    }
+
+    &-icon {
+      width: rem(24px);
+      height: rem(24px);
+    }
+  }
+}
