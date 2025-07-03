@@ -118,7 +118,7 @@ const updateBuildScripts = () => ({
 // https://astro.build/config
 export default defineConfig({
   site: 'https://mrandre18.github.io/RedCollar_CV/',
-  base: basePath,
+  base: '/RedCollar_CV/',
 
   devToolbar: {
     enabled: false
