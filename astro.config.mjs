@@ -11,7 +11,7 @@ const basePath = '/'
 const timestamp = Date.now()
 
 const outDir = resolve(path.dirname(url.fileURLToPath(import.meta.url)), 'dist')
-const pagesDir = resolve(outDir, 'pages')
+const pagesDir = resolve(outDir, '/')
 
 fs.mkdir(pagesDir, { recursive: true }).catch(err => {
   console.error('Ошибка при создании папки pages:', err)
