@@ -39,6 +39,7 @@
     cursor: pointer;
     transition: color $transition;
     text-decoration: underline;
+    font-weight: 700;
 
     @media #{media('>',d)} and (hover: hover) and (pointer: fine) {
       &:hover {
@@ -55,7 +56,15 @@
   h4,
   h5,
   h6 {
-    font-family: $font-accent;
+    font-size: rem(20px);
+    line-height: 120%;
+    letter-spacing: 0.01em;
+    font-weight: 700;
+    margin-top: rem(12px);
+
+    @media #{media('<', d)} {
+      font-size: rem(18px);
+    }
   }
 
   /* Маркированные списки */
@@ -63,11 +72,25 @@
   ul {
     display: flex;
     flex-direction: column;
-    list-style: disc;
-    list-style-position: inside;
+    gap: rem(8px);
 
     li {
-      display: list-item;
+      display: flex;
+      align-items: flex-start;
+
+      &::before {
+        content: '🞄';
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: rem(28px);
+        flex-shrink: 0;
+
+        @media #{media('<', d)} {
+          width: auto;
+          margin-right: rem(8px);
+        }
+      }
     }
   }
 
@@ -76,11 +99,28 @@
   ol {
     display: flex;
     flex-direction: column;
-    list-style: decimal;
-    list-style-position: inside;
+    gap: rem(8px);
+    counter-reset: list-item;
+    counter-set: list-item 0;
 
     li {
-      display: list-item;
+      display: flex;
+      align-items: flex-start;
+      counter-increment: list-item;
+
+      &::before {
+        content: counter(list-item) '.';
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: rem(28px);
+        flex-shrink: 0;
+
+        @media #{media('<', d)} {
+          width: auto;
+          margin-right: rem(8px);
+        }
+      }
     }
   }
 }
