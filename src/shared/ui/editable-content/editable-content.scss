@@ -85,6 +85,11 @@
         justify-content: center;
         width: rem(28px);
         flex-shrink: 0;
+
+        @media #{media('<', d)} {
+          width: auto;
+          margin-right: rem(8px);
+        }
       }
     }
   }
@@ -96,6 +101,7 @@
     flex-direction: column;
     gap: rem(8px);
     counter-reset: list-item;
+    counter-set: list-item 0;
 
     li {
       display: flex;
@@ -109,6 +115,11 @@
         justify-content: center;
         width: rem(28px);
         flex-shrink: 0;
+
+        @media #{media('<', d)} {
+          width: auto;
+          margin-right: rem(8px);
+        }
       }
     }
   }
